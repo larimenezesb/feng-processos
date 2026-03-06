@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FENG — Processo de Entregas Estratégicas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --P: #5B3F6E;       /* purple */
+  --P2: #3D2A4E;      /* dark purple */
+  --O: #F05A28;       /* orange */
+  --O2: #D94A1A;      /* dark orange */
+  --W: #FFFFFF;
+  --BG: #F7F4FB;      /* very pale purple tint */
+  --INK: #1A1A2E;
+  --BODY: #3A3A4A;
+  --MUTED: #888898;
+  --RULE: #E0D8EE;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--W);
+  color: var(--BODY);
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ─────────────── HERO ─────────────── */
+.hero {
+  background: var(--P);
+  padding: 52px 48px 44px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: 'FENG';
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 320px;
+  color: rgba(255,255,255,0.04);
+  position: absolute;
+  right: -20px;
+  top: -60px;
+  line-height: 1;
+  pointer-events: none;
+  letter-spacing: -8px;
+}
+
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--O);
+  margin-bottom: 16px;
+}
+
+.hero-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 88px;
+  color: var(--W);
+  line-height: 0.9;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 1px;
+  margin-bottom: 28px;
+}
+
+.hero-divider {
+  width: 64px;
+  height: 4px;
+  background: var(--O);
+  margin-bottom: 20px;
+}
+
+.hero-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.72);
+  max-width: 480px;
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+.hero-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.htag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.8);
+}
+
+.htag.active {
+  background: var(--O);
+  border-color: var(--O);
+  color: var(--W);
+}
+
+/* ─────────────── NAV STRIP ─────────────── */
+.nav-strip {
+  background: var(--INK);
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-strip::-webkit-scrollbar { display: none; }
+
+.nav-item {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  padding: 14px 20px;
+  white-space: nowrap;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all .2s;
+  text-decoration: none;
+}
+.nav-item:hover {
+  color: var(--W);
+  border-bottom-color: var(--O);
+}
+
+/* ─────────────── WRAPPER ─────────────── */
+.wrap { padding: 0 40px 80px; }
+
+/* ─────────────── SECTION ─────────────── */
+.section { padding: 56px 0 0; }
+
+.sec-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.sec-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  background: var(--O);
+  color: var(--W);
+  padding: 2px 8px;
+  letter-spacing: 1px;
+}
+
+.sec-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--O);
+}
+
+.sec-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  color: var(--INK);
+  letter-spacing: 0.5px;
+  line-height: 1;
+  margin-bottom: 24px;
+}
+
+.sec-rule {
+  height: 1px;
+  background: var(--RULE);
+  margin-bottom: 28px;
+}
+
+/* ─────────────── CALLOUT ─────────────── */
+.callout {
+  border-left: 5px solid var(--P);
+  padding: 16px 20px;
+  background: var(--BG);
+  font-size: 14px;
+  color: var(--BODY);
+  line-height: 1.65;
+  margin-bottom: 28px;
+  font-weight: 500;
+}
+
+.callout.warn {
+  border-left-color: var(--O);
+  background: #FEF0EB;
+  color: var(--O2);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+}
+
+/* ─────────────── PILLAR CARDS ─────────────── */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1.5px solid var(--RULE);
+}
+
+.pillar {
+  padding: 24px 20px 22px;
+  border-right: 1.5px solid var(--RULE);
+  position: relative;
+}
+.pillar:last-child { border-right: none; }
+
+.pillar-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+}
+
+.pillar-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.pillar h4 {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--INK);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pillar p {
+  font-size: 12px;
+  color: var(--MUTED);
+  line-height: 1.5;
+}
+
+/* ─────────────── PHASE CARDS ─────────────── */
+.phases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.phase {
+  border: 1.5px solid var(--RULE);
+  overflow: hidden;
+}
+
+.phase-head {
+  padding: 18px 20px 14px;
+}
+
+.phase-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 52px;
+  line-height: 1;
+  color: var(--W);
+  opacity: 0.35;
+}
+
+.phase-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: var(--W);
+  letter-spacing: 1px;
+  margin-top: -4px;
+}
+
+.phase-sla {
+  display: inline-block;
+  margin: 12px 16px 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+}
+
+.phase-sla.p { background: #EEE8F8; color: var(--P); }
+.phase-sla.o { background: #FEF0EB; color: var(--O); }
+
+.phase-list {
+  list-style: none;
+  padding: 10px 16px 18px;
+}
+
+.phase-list li {
+  font-size: 12.5px;
+  color: var(--BODY);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--RULE);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.phase-list li:last-child { border-bottom: none; }
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.dot.p { background: var(--P); }
+.dot.o { background: var(--O); }
+.dot.m { background: var(--MUTED); }
+
+/* ─────────────── STEP CARDS ─────────────── */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1.5px solid var(--RULE);
+  margin-bottom: 12px;
+}
+
+.steps.row2 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.step {
+  padding: 20px 18px 18px;
+  border-right: 1.5px solid var(--RULE);
+  position: relative;
+  overflow: hidden;
+}
+.step:last-child { border-right: none; }
+
+.step-accent {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+}
+
+.step-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.step h4 {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--INK);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+}
+
+.step p {
+  font-size: 11px;
+  color: var(--MUTED);
+  line-height: 1.5;
+}
+
+/* ─────────────── MATERIALS ─────────────── */
+.materials-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.mat-card {
+  border: 1.5px solid var(--RULE);
+  overflow: hidden;
+}
+
+.mat-head {
+  padding: 12px 18px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--W);
+}
+.mat-head.p { background: var(--P); }
+.mat-head.o { background: var(--O); }
+
+.mat-list {
+  list-style: none;
+  padding: 8px 18px 14px;
+}
+.mat-list li {
+  padding: 7px 0;
+  font-size: 12.5px;
+  color: var(--BODY);
+  border-bottom: 1px solid var(--RULE);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.mat-list li:last-child { border-bottom: none; }
+
+/* ─────────────── ROLES ─────────────── */
+.roles-wrap {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 12px;
+}
+
+.unified {
+  border: 1.5px solid var(--RULE);
+  overflow: hidden;
+}
+
+.unified-top {
+  background: var(--O);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.unified-top h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: var(--W);
+  letter-spacing: 1px;
+}
+
+.mgmt-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.9);
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+.unified-note {
+  padding: 12px 20px;
+  font-size: 12px;
+  color: var(--MUTED);
+  font-style: italic;
+  border-bottom: 1px solid var(--RULE);
+}
+
+.sub-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.sub {
+  padding: 14px 18px 18px;
+}
+.sub + .sub { border-left: 1px solid var(--RULE); }
+
+.sub-label {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  margin-bottom: 12px;
+}
+.sub-label.p { background: #EEE8F8; color: var(--P); }
+.sub-label.o { background: #FEF0EB; color: var(--O); }
+
+.dot-list {
+  list-style: none;
+}
+.dot-list li {
+  font-size: 12px;
+  color: var(--BODY);
+  padding: 6px 0;
+  border-bottom: 1px solid var(--RULE);
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+}
+.dot-list li:last-child { border-bottom: none; }
+
+.side-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.side-card {
+  border: 1.5px solid var(--RULE);
+  overflow: hidden;
+  flex: 1;
+}
+
+.side-head {
+  padding: 10px 16px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: var(--W);
+}
+.side-head.p { background: var(--P); }
+.side-head.ink { background: var(--INK); }
+
+.side-body {
+  padding: 10px 16px 14px;
+}
+
+/* ─────────────── TIMELINE ─────────────── */
+.tl-macro {
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr 2fr;
+  gap: 3px;
+  margin-bottom: 12px;
+}
+
+.tl-block {
+  padding: 10px 14px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--W);
+}
+.tl-block.p  { background: var(--P); }
+.tl-block.o  { background: var(--O); }
+.tl-block.p2 { background: var(--P2); }
+.tl-block .sub { font-size: 9px; font-weight: 400; opacity: 0.7; margin-top: 2px; }
+
+.tl-weeks {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+
+.wk {
+  border: 1.5px solid var(--RULE);
+  overflow: hidden;
+}
+
+.wk-head {
+  padding: 8px 10px;
+  color: var(--W);
+  font-size: 10px;
+  font-weight: 700;
+}
+.wk-head.p  { background: var(--P); }
+.wk-head.o  { background: var(--O); }
+.wk-head.ink { background: var(--INK); }
+
+.wk-sla { font-size: 8.5px; font-weight: 400; opacity: 0.8; }
+
+.wk-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--INK);
+  padding: 8px 10px 2px;
+}
+
+.wk-bar { height: 2px; margin: 0 10px 6px; }
+.wk-bar.p   { background: var(--P); }
+.wk-bar.o   { background: var(--O); }
+.wk-bar.ink { background: var(--INK); }
+
+.wk-items {
+  list-style: none;
+  padding: 0 10px 10px;
+}
+.wk-items li {
+  font-size: 10px;
+  color: var(--BODY);
+  padding: 4px 0;
+  border-bottom: 1px solid var(--RULE);
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  line-height: 1.3;
+}
+.wk-items li:last-child { border-bottom: none; }
+
+.sq {
+  width: 5px;
+  height: 5px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  border-radius: 1px;
+}
+.sq.p   { background: var(--P); }
+.sq.o   { background: var(--O); }
+.sq.ink { background: var(--INK); }
+
+.rules-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.rule-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1.5px solid var(--RULE);
+  padding: 9px 12px;
+}
+
+.rule-n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.rule-n.p { color: var(--P); }
+.rule-n.o { color: var(--O); }
+
+.rule-chip span {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--BODY);
+  line-height: 1.3;
+}
+
+/* ─────────────── CHECKLIST ─────────────── */
+.cl-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.cl-card {
+  border: 1.5px solid var(--RULE);
+  overflow: hidden;
+}
+
+.cl-head {
+  padding: 12px 18px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+.cl-head.p { background: #EEE8F8; color: var(--P); }
+.cl-head.o { background: #FEF0EB; color: var(--O); }
+
+.cl-items {
+  list-style: none;
+  padding: 6px 18px 14px;
+}
+.cl-items li {
+  font-size: 12.5px;
+  color: var(--BODY);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--RULE);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cl-items li:last-child { border-bottom: none; }
+
+.box {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+.box.p { border: 2px solid var(--P); }
+.box.o { border: 2px solid var(--O); }
+
+/* ─────────────── CLOSING ─────────────── */
+.closing-band {
+  margin-top: 56px;
+  background: var(--P2);
+  padding: 48px 40px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+
+.cl-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--O);
+  margin-bottom: 14px;
+}
+
+.cl-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  color: var(--W);
+  line-height: 1.0;
+  letter-spacing: 0.5px;
+  margin-bottom: 24px;
+}
+
+.product-box {
+  border-left: 5px solid var(--O);
+  padding: 12px 18px;
+  background: rgba(240, 90, 40, 0.12);
+  margin-bottom: 22px;
+}
+
+.product-box .lbl {
+  font-size: 10px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.product-box .nm {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  color: var(--O);
+  letter-spacing: 1.5px;
+}
+
+.benefit {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+}
+.benefit:last-child { border-bottom: none; }
+
+.benefit-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--O);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.closing-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.15);
+  text-align: center;
+}
+
+.closing-badge .cb-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  color: var(--W);
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.closing-badge .cb-sub {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--O);
+  margin-top: 8px;
+}
+
+/* ─────────────── FOOTER ─────────────── */
+.footer {
+  background: var(--INK);
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: var(--W);
+  letter-spacing: 4px;
+}
+.footer-info {
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 1px;
+}
+
+/* ─────────────── ORANGE BAND ─────────────── */
+.o-band {
+  background: var(--O);
+  padding: 14px 40px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: var(--W);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.o-band::before {
+  content: '⚠';
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+/* ─────────────── RESPONSIVE ─────────────── */
+@media (max-width: 680px) {
+  .hero { padding: 36px 24px 32px; }
+  .hero-brand { font-size: 56px; }
+  .wrap { padding: 0 20px 60px; }
+  .pillars, .steps, .phases, .materials-grid,
+  .tl-weeks, .tl-macro, .rules-row, .cl-grid,
+  .roles-wrap, .sub-grid, .closing-band {
+    grid-template-columns: 1fr !important;
+  }
+  .steps.row2 { grid-template-columns: 1fr !important; }
+  .step, .pillar { border-right: none; border-bottom: 1.5px solid var(--RULE); }
+  .pillar:last-child, .step:last-child { border-bottom: none; }
+  .sub + .sub { border-left: none; border-top: 1px solid var(--RULE); }
+  .tl-macro { grid-template-columns: 1fr 1fr !important; }
+  .closing-band { padding: 32px 24px; }
+  .footer { padding: 16px 24px; flex-direction: column; gap: 8px; text-align: center; }
+  .o-band { padding: 12px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<div class="hero">
+  <div class="hero-eyebrow">Processo Interno</div>
+  <div class="hero-brand">FENG</div>
+  <div class="hero-title">Entregas Estratégicas · Entrega de Valor Recorrente ao Cliente</div>
+  <div class="hero-divider"></div>
+  <div class="hero-desc">Processo estruturado para produção e apresentação recorrente de materiais estratégicos — reforçando a FENG como parceira consultiva dos clubes.</div>
+  <div class="hero-tags">
+    <span class="htag active">Processo</span>
+    <span class="htag">8 Semanas</span>
+    <span class="htag">3 Fases</span>
+    <span class="htag">7 Etapas</span>
+    <span class="htag">Processo Interno</span>
+  </div>
+</div>
+
+<!-- nav strip -->
+<nav class="nav-strip">
+  <a class="nav-item" href="#objetivo">Objetivo</a>
+  <a class="nav-item" href="#ciclo">Processo</a>
+  <a class="nav-item" href="#etapas">Etapas</a>
+  <a class="nav-item" href="#materiais">Materiais</a>
+  <a class="nav-item" href="#papeis">Papéis</a>
+  <a class="nav-item" href="#timeline">Timeline</a>
+  <a class="nav-item" href="#checklist">Checklist</a>
+</nav>
+
+<div class="wrap">
+
+<!-- ═══════════════ 01 OBJETIVO ═══════════════ -->
+<div class="section" id="objetivo">
+  <div class="sec-eyebrow">
+    <span class="sec-num">01</span>
+    <span class="sec-label">Objetivo</span>
+  </div>
+  <div class="sec-title">Estudos estratégicos que geram valor real para os clubes.</div>
+  <div class="sec-rule"></div>
+
+  <div class="callout">
+    Estruturar um fluxo recorrente para produção e apresentação de materiais estratégicos — reforçando a percepção da FENG como parceira estratégica, indo além da operação cotidiana.
+  </div>
+
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-bar" style="background:var(--P)"></div>
+      <div class="pillar-num" style="color:var(--P)">01</div>
+      <h4>Estudos Analíticos</h4>
+      <p>Análises aprofundadas dos programas e dados dos clubes</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-bar" style="background:var(--O)"></div>
+      <div class="pillar-num" style="color:var(--O)">02</div>
+      <h4>Benchmarkings</h4>
+      <p>Referências de mercado e boas práticas internacionais</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-bar" style="background:var(--P)"></div>
+      <div class="pillar-num" style="color:var(--P)">03</div>
+      <h4>Documentos Metodológicos</h4>
+      <p>Frameworks e metodologias de evolução estratégica</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-bar" style="background:var(--O)"></div>
+      <div class="pillar-num" style="color:var(--O)">04</div>
+      <h4>Propostas Estratégicas</h4>
+      <p>Recomendações práticas e aplicáveis por clube</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════ 02 CICLO ═══════════════ -->
+<div class="section" id="ciclo">
+  <div class="sec-eyebrow">
+    <span class="sec-num">02</span>
+    <span class="sec-label">Estrutura do Processo</span>
+  </div>
+  <div class="sec-title">3 Fases · 8 Semanas · Processo</div>
+  <div class="sec-rule"></div>
+
+  <div class="phases">
+    <div class="phase">
+      <div class="phase-head" style="background:var(--P)">
+        <div class="phase-num">01</div>
+        <div class="phase-name">Planejamento</div>
+      </div>
+      <span class="phase-sla p">Sem 1–2</span>
+      <ul class="phase-list">
+        <li><span class="dot p"></span>Kickoff do ciclo</li>
+        <li><span class="dot p"></span>Definição dos estudos</li>
+        <li><span class="dot p"></span>Envelopamento por clube</li>
+        <li><span class="dot p"></span>Responsáveis alocados</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-head" style="background:var(--O)">
+        <div class="phase-num">02</div>
+        <div class="phase-name">Produção</div>
+      </div>
+      <span class="phase-sla o">Sem 3–6</span>
+      <ul class="phase-list">
+        <li><span class="dot o"></span>Desenvolvimento dos estudos</li>
+        <li><span class="dot o"></span>Coleta de dados e benchmark</li>
+        <li><span class="dot o"></span>Revisão estratégica interna</li>
+        <li><span class="dot o"></span>Documento final (T-15)</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-head" style="background:var(--P2)">
+        <div class="phase-num">03</div>
+        <div class="phase-name">Entrega</div>
+      </div>
+      <span class="phase-sla p">Sem 7–8</span>
+      <ul class="phase-list">
+        <li><span class="dot p"></span>Agendamento via CS</li>
+        <li><span class="dot p"></span>Apresentações aos clubes</li>
+        <li><span class="dot p"></span>Registro de feedbacks</li>
+        <li><span class="dot p"></span>Definição de próximos passos</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="o-band" style="margin-top:20px">
+  Materiais devem estar finalizados 15 dias antes do início das apresentações (T-15)
+</div>
+
+
+<!-- ═══════════════ 03 ETAPAS ═══════════════ -->
+<div class="section" id="etapas">
+  <div class="sec-eyebrow">
+    <span class="sec-num">03</span>
+    <span class="sec-label">Etapas do Processo</span>
+  </div>
+  <div class="sec-title">As 7 Etapas do Processo</div>
+  <div class="sec-rule"></div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-accent" style="background:var(--P)"></div>
+      <div class="step-num" style="color:var(--P)">01</div>
+      <h4>Kickoff do Ciclo</h4>
+      <p>Reunião Int. + Mkt Digital. Definir estudos, responsáveis e clubes-alvo.</p>
+    </div>
+    <div class="step">
+      <div class="step-accent" style="background:var(--O)"></div>
+      <div class="step-num" style="color:var(--O)">02</div>
+      <h4>Envelopamento</h4>
+      <p>Mapear quais materiais cada clube recebe. Definir entregas alternativas.</p>
+    </div>
+    <div class="step">
+      <div class="step-accent" style="background:var(--P)"></div>
+      <div class="step-num" style="color:var(--P)">03</div>
+      <h4>Desenvolvimento</h4>
+      <p>Produção do estudo: contexto, diagnóstico, benchmark, insights e recomendações.</p>
+    </div>
+    <div class="step">
+      <div class="step-accent" style="background:var(--O)"></div>
+      <div class="step-num" style="color:var(--O)">04</div>
+      <h4>Revisão Estratégica</h4>
+      <p>Validação interna com liderança. Ajuste de narrativa e storytelling.</p>
+    </div>
+  </div>
+
+  <div class="steps row2">
+    <div class="step">
+      <div class="step-accent" style="background:var(--P)"></div>
+      <div class="step-num" style="color:var(--P)">05</div>
+      <h4>Documento Final (T-15)</h4>
+      <p>Material finalizado em PPT + versão executiva + definição dos apresentadores.</p>
+    </div>
+    <div class="step">
+      <div class="step-accent" style="background:var(--O)"></div>
+      <div class="step-num" style="color:var(--O)">06</div>
+      <h4>Agendamento</h4>
+      <p>Via CS ou pela área. Modelo híbrido: CS agenda, Int./Mkt apresenta.</p>
+    </div>
+    <div class="step">
+      <div class="step-accent" style="background:var(--P)"></div>
+      <div class="step-num" style="color:var(--P)">07</div>
+      <h4>Apresentações</h4>
+      <p>Reuniões com cada clube. Condução da apresentação e discussão estratégica.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════ 04 MATERIAIS ═══════════════ -->
+<div class="section" id="materiais">
+  <div class="sec-eyebrow">
+    <span class="sec-num">04</span>
+    <span class="sec-label">Tipos de Material</span>
+  </div>
+  <div class="sec-title">Exemplos de estudos produzidos</div>
+  <div class="sec-rule"></div>
+
+  <div class="callout">
+    Cada estudo tem uma estrutura narrativa própria — o storytelling é definido de acordo com o tema proposto e o contexto de cada clube. Os exemplos abaixo ilustram os tipos de material que fazem parte do processo.
+  </div>
+
+  <div class="pillars" style="grid-template-columns: repeat(4,1fr)">
+    <div class="pillar"><div class="pillar-bar" style="background:var(--P)"></div>
+      <div class="pillar-num" style="color:var(--P);font-size:28px;margin-bottom:8px">↗</div>
+      <h4>Benchmark</h4><p>Programas internacionais e melhores práticas de mercado</p></div>
+    <div class="pillar"><div class="pillar-bar" style="background:var(--O)"></div>
+      <div class="pillar-num" style="color:var(--O);font-size:28px;margin-bottom:8px">◎</div>
+      <h4>CRM &amp; Automação</h4><p>Estratégias de relacionamento, segmentação e jornada</p></div>
+    <div class="pillar"><div class="pillar-bar" style="background:var(--P)"></div>
+      <div class="pillar-num" style="color:var(--P);font-size:28px;margin-bottom:8px">◈</div>
+      <h4>Loyalty &amp; Retenção</h4><p>Análise de churn, fidelização e lifetime value</p></div>
+    <div class="pillar"><div class="pillar-bar" style="background:var(--O)"></div>
+      <div class="pillar-num" style="color:var(--O);font-size:28px;margin-bottom:8px">◐</div>
+      <h4>Performance Digital</h4><p>Mídia paga, elasticidade de preço e carrinho de assinatura</p></div>
+  </div>
+</div>
+
+
+<!-- ═══════════════ 05 PAPÉIS ═══════════════ -->
+<div class="section" id="papeis">
+  <div class="sec-eyebrow">
+    <span class="sec-num">05</span>
+    <span class="sec-label">Papéis e Responsáveis</span>
+  </div>
+  <div class="sec-title">Quem faz o quê no processo</div>
+  <div class="sec-rule"></div>
+
+  <div class="roles-wrap">
+    <div class="unified">
+      <div class="unified-top">
+        <h3>Inteligência + Planejamento</h3>
+      </div>
+      <div class="unified-note">
+        Processo definido e conduzido em conjunto. O responsável por cada estudo é definido no Kickoff — alguns materiais vão exigir as duas verticais atuando juntas.
+      </div>
+      <div style="padding:14px 18px 18px">
+        <ul class="dot-list">
+          <li><span class="dot p"></span>Definição dos temas do processo</li>
+          <li><span class="dot p"></span>Estrutura analítica dos estudos</li>
+          <li><span class="dot o"></span>Estudos de mídia paga e benchmark de campanhas</li>
+          <li><span class="dot p"></span>Insights e recomendações estratégicas</li>
+          <li><span class="dot o"></span>Análises de performance digital</li>
+          <li><span class="dot p"></span>Apresentação dos estudos aos clubes</li>
+          <li><span class="dot o"></span>Suporte criativo aos materiais produzidos</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="side-cards">
+      <div class="side-card">
+        <div class="side-head p">CS</div>
+        <div class="side-body">
+          <ul class="dot-list">
+            <li><span class="dot m"></span>Agendamento das reuniões com clubes</li>
+            <li><span class="dot m"></span>Gestão de agenda e confirmações</li>
+            <li><span class="dot m"></span>Acompanhamento nas apresentações</li>
+            <li><span class="dot m"></span>Registro de feedbacks</li>
+          </ul>
+        </div>
+      </div>
+      <div class="side-card">
+        <div class="side-head ink">BI / Produto</div>
+        <div class="side-body">
+          <ul class="dot-list">
+            <li><span class="dot m"></span>Apoio na análise de dados</li>
+            <li><span class="dot m"></span>Suporte técnico às métricas</li>
+            <li><span class="dot m"></span>Insights de produto e crescimento</li>
+            <li><span class="dot m"></span>Validação de dados dos programas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout warn" style="margin-top:14px">
+    ⚠ &nbsp; Governança: Mín. 1 rep. estratégico (Int/Mkt) + 1 de relacionamento (CS). Máx. 2–3 pessoas da FENG por reunião.
+  </div>
+</div>
+
+
+<!-- ═══════════════ 06 TIMELINE ═══════════════ -->
+<div class="section" id="timeline">
+  <div class="sec-eyebrow">
+    <span class="sec-num">06</span>
+    <span class="sec-label">Timeline do Ciclo</span>
+  </div>
+  <div class="sec-title">8 Semanas com SLA por Etapa</div>
+  <div class="sec-rule"></div>
+
+  <div class="tl-macro">
+    <div class="tl-block p">Planejamento<div class="sub">Sem 1–2</div></div>
+    <div class="tl-block o">Produção<div class="sub">Sem 3–5</div></div>
+    <div class="tl-block p2">Preparação<div class="sub">Sem 6</div></div>
+    <div class="tl-block" style="background:var(--INK)">Entrega<div class="sub">Sem 7–8</div></div>
+  </div>
+
+  <div class="tl-weeks">
+    <div class="wk">
+      <div class="wk-head p">SEM 01<div class="wk-sla">SLA: 1 semana</div></div>
+      <div class="wk-title">Kickoff</div>
+      <div class="wk-bar p"></div>
+      <ul class="wk-items">
+        <li><span class="sq p"></span>Definição dos estudos (2–3)</li>
+        <li><span class="sq p"></span>Definição de responsáveis</li>
+        <li><span class="sq p"></span>Clubes-alvo preliminares</li>
+      </ul>
+    </div>
+    <div class="wk">
+      <div class="wk-head p">SEM 02<div class="wk-sla">SLA: 1 semana</div></div>
+      <div class="wk-title">Envelopamento</div>
+      <div class="wk-bar p"></div>
+      <ul class="wk-items">
+        <li><span class="sq p"></span>Confirmar clubes por estudo</li>
+        <li><span class="sq p"></span>Entregas alternativas para clubes não contemplados na entrega principal</li>
+        <li><span class="sq p"></span>Escopo de cada documento</li>
+      </ul>
+    </div>
+    <div class="wk">
+      <div class="wk-head o">SEM 03–04<div class="wk-sla">SLA: 2 semanas</div></div>
+      <div class="wk-title">Desenvolvimento</div>
+      <div class="wk-bar o"></div>
+      <ul class="wk-items">
+        <li><span class="sq o"></span>Coleta de dados e benchmark</li>
+        <li><span class="sq o"></span>Construção das análises</li>
+        <li><span class="sq o"></span>Insights estratégicos</li>
+      </ul>
+    </div>
+    <div class="wk">
+      <div class="wk-head o">SEM 05<div class="wk-sla">SLA: 1 semana</div></div>
+      <div class="wk-title">Finalização</div>
+      <div class="wk-bar o"></div>
+      <ul class="wk-items">
+        <li><span class="sq o"></span>Consolidação dos materiais</li>
+        <li><span class="sq o"></span>Revisão estratégica interna</li>
+        <li><span class="sq o"></span>Ajustes de narrativa</li>
+      </ul>
+    </div>
+    <div class="wk">
+      <div class="wk-head p2" style="background:var(--P2)">SEM 06<div class="wk-sla">SLA: T-15</div></div>
+      <div class="wk-title">Doc. Final</div>
+      <div class="wk-bar p"></div>
+      <ul class="wk-items">
+        <li><span class="sq p"></span>Materiais prontos</li>
+        <li><span class="sq p"></span>Definição de apresentadores</li>
+        <li><span class="sq p"></span>Briefing para CS agendar</li>
+      </ul>
+    </div>
+    <div class="wk">
+      <div class="wk-head ink">SEM 07–08<div class="wk-sla">SLA: 2 semanas</div></div>
+      <div class="wk-title">Apresentações</div>
+      <div class="wk-bar ink"></div>
+      <ul class="wk-items">
+        <li><span class="sq ink"></span>Reuniões com todos os clubes</li>
+        <li><span class="sq ink"></span>Feedbacks e próximos passos</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rules-row">
+    <div class="rule-chip"><span class="rule-n p">01</span><span>2–3 estudos por ciclo</span></div>
+    <div class="rule-chip"><span class="rule-n o">02</span><span>Todos os clubes recebem entrega</span></div>
+    <div class="rule-chip"><span class="rule-n p">03</span><span>Docs prontos T-15</span></div>
+    <div class="rule-chip"><span class="rule-n o">04</span><span>Apresentações em 2 semanas</span></div>
+  </div>
+</div>
+
+
+<!-- ═══════════════ 07 CHECKLIST ═══════════════ -->
+<div class="section" id="checklist">
+  <div class="sec-eyebrow">
+    <span class="sec-num">07</span>
+    <span class="sec-label">Checklist Operacional</span>
+  </div>
+  <div class="sec-title">Controle do processo</div>
+  <div class="sec-rule"></div>
+
+  <div class="cl-grid">
+    <div class="cl-card">
+      <div class="cl-head p">Início do Ciclo</div>
+      <ul class="cl-items">
+        <li><span class="box p"></span>Reunião de definição de temas</li>
+        <li><span class="box p"></span>Definição de responsáveis por estudo</li>
+        <li><span class="box p"></span>Mapeamento de clubes-alvo</li>
+      </ul>
+    </div>
+    <div class="cl-card">
+      <div class="cl-head o">Desenvolvimento</div>
+      <ul class="cl-items">
+        <li><span class="box o"></span>Estrutura do estudo definida</li>
+        <li><span class="box o"></span>Dados coletados e validados</li>
+        <li><span class="box o"></span>Benchmark realizado</li>
+        <li><span class="box o"></span>Insights consolidados</li>
+      </ul>
+    </div>
+    <div class="cl-card">
+      <div class="cl-head p">Pré-Apresentação</div>
+      <ul class="cl-items">
+        <li><span class="box p"></span>Documento final pronto (T-15)</li>
+        <li><span class="box p"></span>Revisão estratégica concluída</li>
+        <li><span class="box p"></span>Storytelling e narrativa definidos</li>
+      </ul>
+    </div>
+    <div class="cl-card">
+      <div class="cl-head o">Apresentação</div>
+      <ul class="cl-items">
+        <li><span class="box o"></span>Reuniões realizadas com clubes</li>
+        <li><span class="box o"></span>Feedbacks registrados</li>
+        <li><span class="box o"></span>Próximos passos acordados</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<!-- ═══════════════ CLOSING BAND ═══════════════ -->
+<div class="closing-band">
+  <div>
+    <div class="cl-eyebrow">Objetivo do Processo</div>
+    <div class="cl-headline">Transformar esse<br>processo em um<br>produto interno.</div>
+    <div class="benefit"><span class="benefit-dot"></span>Gerar valor consultivo recorrente e percebido pelos clubes</div>
+    <div class="benefit"><span class="benefit-dot"></span>Padronizar e escalar a produção de entregas estratégicas</div>
+    <div class="benefit"><span class="benefit-dot"></span>Reforçar o posicionamento da FENG além da operação</div>
+    <div class="benefit"><span class="benefit-dot"></span>Criar um processo vivo — que evolui a cada novo ciclo</div>
+  </div>
+</div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<div class="footer">
+  <span class="footer-brand">FENG</span>
+
+</div>
+
+</body>
+</html>
