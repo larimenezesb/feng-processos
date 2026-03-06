@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FENG — Calendário Anual 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --P:    #5B3F6E;
+  --P2:   #3D2A4E;
+  --O:    #F05A28;
+  --O2:   #D94A1A;
+  --W:    #FFFFFF;
+  --BG:   #F7F4FB;
+  --INK:  #1A1A2E;
+  --BODY: #3A3A4A;
+  --MUTED:#888898;
+  --RULE: #E0D8EE;
+
+  /* phase colours */
+  --PLAN: #5B3F6E;
+  --PROD: #F05A28;
+  --PREP: #3D2A4E;
+  --ENTR: #1A1A2E;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--W);
+  color: var(--BODY);
+  max-width: 960px;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--P);
+  padding: 52px 48px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '2026';
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 340px;
+  color: rgba(255,255,255,0.04);
+  position: absolute;
+  right: -20px;
+  top: -80px;
+  line-height: 1;
+  pointer-events: none;
+  letter-spacing: -8px;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--O); margin-bottom: 16px;
+}
+.hero-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 88px; color: var(--W);
+  line-height: 0.9; letter-spacing: 2px; margin-bottom: 4px;
+}
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px; color: rgba(255,255,255,0.65);
+  letter-spacing: 1px; margin-bottom: 28px;
+}
+.hero-divider { width: 64px; height: 4px; background: var(--O); margin-bottom: 20px; }
+.hero-desc {
+  font-size: 14px; color: rgba(255,255,255,0.72);
+  max-width: 540px; line-height: 1.65; margin-bottom: 28px;
+}
+.hero-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.htag {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; padding: 6px 14px;
+  border: 1.5px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.8);
+}
+.htag.active { background: var(--O); border-color: var(--O); color: var(--W); }
+
+/* ── NAV ── */
+.nav-strip {
+  background: var(--INK);
+  display: flex; overflow-x: auto; scrollbar-width: none;
+}
+.nav-strip::-webkit-scrollbar { display: none; }
+.nav-item {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: rgba(255,255,255,0.45);
+  padding: 14px 20px; white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  text-decoration: none; transition: all .2s;
+}
+.nav-item:hover { color: var(--W); border-bottom-color: var(--O); }
+
+/* ── WRAP ── */
+.wrap { padding: 0 40px 80px; }
+
+/* ── SECTION ── */
+.section { padding: 56px 0 0; }
+.sec-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.sec-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 13px;
+  background: var(--O); color: var(--W); padding: 2px 8px; letter-spacing: 1px;
+}
+.sec-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--O); }
+.sec-title {
+  font-family: 'Bebas Neue', sans-serif; font-size: 42px;
+  color: var(--INK); letter-spacing: 0.5px; line-height: 1; margin-bottom: 24px;
+}
+.sec-rule { height: 1px; background: var(--RULE); margin-bottom: 28px; }
+
+/* ── LEGEND ── */
+.legend {
+  display: flex; gap: 20px; flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.leg-item { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; color: var(--BODY); }
+.leg-dot { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+
+/* ── CYCLE OVERVIEW STRIP ── */
+.cycle-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  margin-bottom: 48px;
+}
+
+.cycle-card {
+  border: 1.5px solid var(--RULE);
+  overflow: hidden;
+  cursor: default;
+}
+
+.cycle-card-head {
+  padding: 12px 14px 10px;
+  color: var(--W);
+}
+.cycle-card-head.c1 { background: var(--P); }
+.cycle-card-head.c2 { background: var(--O); }
+.cycle-card-head.c3 { background: var(--P2); }
+.cycle-card-head.c4 { background: var(--INK); }
+.cycle-card-head.c5 { background: var(--P); }
+.cycle-card-head.c6 { background: var(--O); }
+
+.cycle-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px; line-height: 1; opacity: 0.35;
+}
+.cycle-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px; letter-spacing: 1px; margin-top: -2px;
+}
+.cycle-dates {
+  font-size: 10px; opacity: 0.8; margin-top: 4px; font-weight: 600;
+}
+
+.cycle-body { padding: 12px 14px 14px; }
+.cycle-body p {
+  font-size: 10.5px; color: var(--MUTED); line-height: 1.45;
+  margin-bottom: 8px;
+}
+
+.phase-bar-mini {
+  display: flex; gap: 2px; margin-top: 8px;
+}
+.pbm {
+  height: 5px; border-radius: 1px; flex: 1;
+}
+.pbm.plan { background: var(--PLAN); flex: 2; }
+.pbm.prod { background: var(--PROD); flex: 3; }
+.pbm.prep { background: var(--PREP); flex: 1; }
+.pbm.entr { background: var(--ENTR); flex: 2; }
+
+/* ── MONTH CALENDAR ── */
+.months-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.month-block {
+  border: 1.5px solid var(--RULE);
+  overflow: hidden;
+}
+
+.month-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--BG);
+  border-bottom: 1.5px solid var(--RULE);
+}
+
+.month-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px; color: var(--INK); letter-spacing: 1px;
+}
+
+.month-badge {
+  font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; padding: 3px 8px; border-radius: 1px;
+}
+.mb-c1 { background: #EEE8F8; color: var(--P); }
+.mb-c2 { background: #FEF0EB; color: var(--O); }
+.mb-c3 { background: #EEE8F8; color: var(--P2); }
+.mb-c4 { background: #E8E8F0; color: var(--INK); }
+.mb-c5 { background: #EEE8F8; color: var(--P); }
+.mb-c6 { background: #FEF0EB; color: var(--O); }
+.mb-trans { background: var(--BG); color: var(--MUTED); }
+
+/* week grid inside month */
+.week-rows { padding: 10px 14px 14px; }
+
+.week-row {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.week-row:last-child { margin-bottom: 0; }
+
+.week-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 1px;
+  color: var(--MUTED); min-width: 36px; padding-top: 5px;
+  text-transform: uppercase; flex-shrink: 0;
+}
+
+.week-pill {
+  flex: 1;
+  padding: 5px 10px;
+  font-size: 10px; font-weight: 600;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.week-pill.plan { background: #EEE8F8; color: var(--P); border-left: 3px solid var(--P); }
+.week-pill.prod { background: #FEF0EB; color: var(--O2); border-left: 3px solid var(--O); }
+.week-pill.prep { background: #EDEAF5; color: var(--P2); border-left: 3px solid var(--P2); }
+.week-pill.entr { background: #EAEAEF; color: var(--INK); border-left: 3px solid var(--INK); }
+.week-pill.gap  { background: var(--BG); color: var(--MUTED); border-left: 3px solid var(--RULE); font-style: italic; }
+
+.week-pill-tag {
+  font-size: 8px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; opacity: 0.7;
+}
+
+.month-dates {
+  font-size: 9px; color: var(--MUTED);
+  padding: 0 14px 10px;
+  border-top: 1px solid var(--RULE);
+  padding-top: 8px;
+  margin-top: 2px;
+}
+
+/* ── CALLOUT ── */
+.callout {
+  border-left: 5px solid var(--P);
+  padding: 16px 20px;
+  background: var(--BG);
+  font-size: 14px; color: var(--BODY);
+  line-height: 1.65; margin-bottom: 28px; font-weight: 500;
+}
+.callout.warn {
+  border-left-color: var(--O); background: #FEF0EB;
+  color: var(--O2); font-weight: 700; font-size: 13px;
+}
+
+/* ── ANNUAL SUMMARY TABLE ── */
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.summary-table th {
+  background: var(--INK);
+  color: var(--W);
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  text-align: left;
+}
+.summary-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--RULE);
+  vertical-align: top;
+  color: var(--BODY);
+}
+.summary-table tr:last-child td { border-bottom: none; }
+.summary-table tr:hover td { background: var(--BG); }
+
+.td-cycle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px; letter-spacing: 1px;
+}
+
+.phase-chip {
+  display: inline-block;
+  font-size: 9px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; padding: 2px 7px; border-radius: 1px;
+  margin-right: 3px; margin-bottom: 3px;
+}
+.pc-plan { background: #EEE8F8; color: var(--P); }
+.pc-prod { background: #FEF0EB; color: var(--O2); }
+.pc-entr { background: #EAEAEF; color: var(--INK); }
+
+/* ── O-BAND ── */
+.o-band {
+  background: var(--O); padding: 14px 40px;
+  font-family: 'Bebas Neue', sans-serif; font-size: 15px;
+  letter-spacing: 3px; color: var(--W);
+  display: flex; align-items: center; gap: 16px;
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--INK); padding: 20px 40px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px; color: var(--W); letter-spacing: 4px;
+}
+
+@media (max-width: 680px) {
+  .hero { padding: 36px 24px 32px; }
+  .hero-brand { font-size: 56px; }
+  .wrap { padding: 0 20px 60px; }
+  .cycle-strip { grid-template-columns: repeat(2,1fr); }
+  .months-grid { grid-template-columns: 1fr; }
+  .o-band, .footer { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+</head>
+<body>
+
+
+
+<div class="wrap">
+
+<!-- ═══ LEGENDA ═══ -->
+<div class="section" id="visao">
+  <div class="sec-eyebrow">
+    <span class="sec-num">01</span>
+    <span class="sec-label">Visão Geral</span>
+  </div>
+  <div class="sec-title">6 Entregas ao longo de 2026</div>
+  <div class="sec-rule"></div>
+
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:var(--PLAN)"></div>Planejamento (Sem 1–2)</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--PROD)"></div>Produção (Sem 3–6)</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--PREP)"></div>Preparação (Sem 6)</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--ENTR)"></div>Apresentações (Sem 7–8)</div>
+  </div>
+
+  <!-- 6 cycle cards -->
+  <div class="cycle-strip">
+
+    <!-- CICLO 1: já em curso — apresentações 23–27 mar -->
+    <!-- Trabalhando de trás pra frente: apres. = 23-27 mar (sem 7-8)
+         sem 6 = 16-20 mar | sem 5 = 9-13 mar | sem 4 = 2-6 mar
+         sem 3 = 23-27 fev | sem 2 = 16-20 fev | sem 1 = 9-13 fev -->
+    <div class="cycle-card">
+      <div class="cycle-card-head c1">
+        <div class="cycle-num">01</div>
+        <div class="cycle-name">Entrega 1</div>
+        <div class="cycle-dates">Fev 09 → Mar 27</div>
+      </div>
+      <div class="cycle-body">
+        <p>Kickoff: 09 Fev<br>Doc. Final: 13 Mar<br>Apresentações: 23–27 Mar</p>
+        <div class="phase-bar-mini">
+          <div class="pbm plan"></div>
+          <div class="pbm prod"></div>
+          <div class="pbm prep"></div>
+          <div class="pbm entr"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CICLO 2: começa semana seguinte às apres. do ciclo 1
+         Kickoff: 30 mar | sem 2: 6 abr | sem 3-4: 13-24 abr
+         sem 5: 27 abr | sem 6/T-15: 4 mai | apres: 18–29 mai -->
+    <div class="cycle-card">
+      <div class="cycle-card-head c2">
+        <div class="cycle-num">02</div>
+        <div class="cycle-name">Entrega 2</div>
+        <div class="cycle-dates">Mar 30 → Mai 22</div>
+      </div>
+      <div class="cycle-body">
+        <p>Kickoff: 30 Mar<br>Doc. Final: 08 Mai<br>Apresentações: 12–22 Mai</p>
+        <div class="phase-bar-mini">
+          <div class="pbm plan"></div>
+          <div class="pbm prod"></div>
+          <div class="pbm prep"></div>
+          <div class="pbm entr"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CICLO 3: kickoff 25 mai -->
+    <div class="cycle-card">
+      <div class="cycle-card-head c3">
+        <div class="cycle-num">03</div>
+        <div class="cycle-name">Entrega 3</div>
+        <div class="cycle-dates">Mai 25 → Jul 17</div>
+      </div>
+      <div class="cycle-body">
+        <p>Kickoff: 25 Mai<br>Doc. Final: 03 Jul<br>Apresentações: 06–17 Jul</p>
+        <div class="phase-bar-mini">
+          <div class="pbm plan"></div>
+          <div class="pbm prod"></div>
+          <div class="pbm prep"></div>
+          <div class="pbm entr"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CICLO 4: kickoff 20 jul -->
+    <div class="cycle-card">
+      <div class="cycle-card-head c4">
+        <div class="cycle-num">04</div>
+        <div class="cycle-name">Entrega 4</div>
+        <div class="cycle-dates">Jul 20 → Set 11</div>
+      </div>
+      <div class="cycle-body">
+        <p>Kickoff: 20 Jul<br>Doc. Final: 28 Ago<br>Apresentações: 31 Ago–11 Set</p>
+        <div class="phase-bar-mini">
+          <div class="pbm plan"></div>
+          <div class="pbm prod"></div>
+          <div class="pbm prep"></div>
+          <div class="pbm entr"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CICLO 5: kickoff 14 set -->
+    <div class="cycle-card">
+      <div class="cycle-card-head c5">
+        <div class="cycle-num">05</div>
+        <div class="cycle-name">Entrega 5</div>
+        <div class="cycle-dates">Set 14 → Nov 06</div>
+      </div>
+      <div class="cycle-body">
+        <p>Kickoff: 14 Set<br>Doc. Final: 23 Out<br>Apresentações: 26 Out–06 Nov</p>
+        <div class="phase-bar-mini">
+          <div class="pbm plan"></div>
+          <div class="pbm prod"></div>
+          <div class="pbm prep"></div>
+          <div class="pbm entr"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CICLO 6: kickoff 9 nov -->
+    <div class="cycle-card">
+      <div class="cycle-card-head c6">
+        <div class="cycle-num">06</div>
+        <div class="cycle-name">Entrega 6</div>
+        <div class="cycle-dates">Nov 09 → Jan 09</div>
+      </div>
+      <div class="cycle-body">
+        <p>Kickoff: 09 Nov<br>Doc. Final: 18 Dez<br>Apresentações: 05–09 Jan '27</p>
+        <div class="phase-bar-mini">
+          <div class="pbm plan"></div>
+          <div class="pbm prod"></div>
+          <div class="pbm prep"></div>
+          <div class="pbm entr"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /cycle-strip -->
+
+</div><!-- /section -->
+
+
+<!-- ═══ RESUMO ═══ -->
+<div class="section" id="resumo">
+  <div class="sec-eyebrow">
+    <span class="sec-num">03</span>
+    <span class="sec-label">Resumo Anual</span>
+  </div>
+  <div class="sec-title">As 6 entregas em uma visão</div>
+  <div class="sec-rule"></div>
+
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>Entrega</th>
+        <th>Kickoff</th>
+        <th>Doc. Final (T-15)</th>
+        <th>Apresentações</th>
+        <th>Fases</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="td-cycle" style="color:var(--P)">Entrega 1</span></td>
+        <td>09 Fevereiro</td>
+        <td>13 Março</td>
+        <td><strong>23–27 Março</strong></td>
+        <td>
+          <span class="phase-chip pc-plan">Plan</span>
+          <span class="phase-chip pc-prod">Prod</span>
+          <span class="phase-chip pc-entr">Entr</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="td-cycle" style="color:var(--O)">Entrega 2</span></td>
+        <td>30 Março</td>
+        <td>08 Maio</td>
+        <td><strong>12–22 Maio</strong></td>
+        <td>
+          <span class="phase-chip pc-plan">Plan</span>
+          <span class="phase-chip pc-prod">Prod</span>
+          <span class="phase-chip pc-entr">Entr</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="td-cycle" style="color:var(--P2)">Entrega 3</span></td>
+        <td>25 Maio</td>
+        <td>03 Julho</td>
+        <td><strong>06–17 Julho</strong></td>
+        <td>
+          <span class="phase-chip pc-plan">Plan</span>
+          <span class="phase-chip pc-prod">Prod</span>
+          <span class="phase-chip pc-entr">Entr</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="td-cycle" style="color:var(--INK)">Entrega 4</span></td>
+        <td>20 Julho</td>
+        <td>28 Agosto</td>
+        <td><strong>31 Ago – 11 Set</strong></td>
+        <td>
+          <span class="phase-chip pc-plan">Plan</span>
+          <span class="phase-chip pc-prod">Prod</span>
+          <span class="phase-chip pc-entr">Entr</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="td-cycle" style="color:var(--P)">Entrega 5</span></td>
+        <td>14 Setembro</td>
+        <td>23 Outubro</td>
+        <td><strong>26 Out – 06 Nov</strong></td>
+        <td>
+          <span class="phase-chip pc-plan">Plan</span>
+          <span class="phase-chip pc-prod">Prod</span>
+          <span class="phase-chip pc-entr">Entr</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="td-cycle" style="color:var(--O)">Entrega 6</span></td>
+        <td>09 Novembro</td>
+        <td>18 Dezembro</td>
+        <td><strong>05–09 Janeiro '27</strong></td>
+        <td>
+          <span class="phase-chip pc-plan">Plan</span>
+          <span class="phase-chip pc-prod">Prod</span>
+          <span class="phase-chip pc-entr">Entr</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<!-- ═══ MÊS A MÊS ═══ -->
+<div class="section" id="meses">
+  <div class="sec-eyebrow">
+    <span class="sec-num">02</span>
+    <span class="sec-label">Mês a Mês</span>
+  </div>
+  <div class="sec-title">Distribuição semanal do processo</div>
+  <div class="sec-rule"></div>
+
+  <div class="months-grid">
+
+    <!-- ── FEVEREIRO ── -->
+    <div class="month-block">
+      <div class="month-head">
+        <div class="month-name">Fevereiro</div>
+        <span class="month-badge mb-c1">Entrega 1</span>
+      </div>
+      <div class="week-rows">
+        <div class="week-row">
+          <div class="week-label">S1</div>
+          <div class="week-pill gap">Pré-início</div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S2</div>
+          <div class="week-pill plan">Kickoff da Entrega <span class="week-pill-tag">Plan</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S3</div>
+          <div class="week-pill plan">Envelopamento <span class="week-pill-tag">Plan</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S4</div>
+          <div class="week-pill prod">Desenvolvimento <span class="week-pill-tag">Prod</span></div>
+        </div>
+      </div>
+      <div class="month-dates">09 Fev — Kickoff · 16 Fev — Envelopamento</div>
+    </div>
+
+    <!-- ── MARÇO ── -->
+    <div class="month-block">
+      <div class="month-head">
+        <div class="month-name">Março</div>
+        <span class="month-badge mb-c1">Entrega 1</span>
+      </div>
+      <div class="week-rows">
+        <div class="week-row">
+          <div class="week-label">S1</div>
+          <div class="week-pill prod">Desenvolvimento <span class="week-pill-tag">Prod</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S2</div>
+          <div class="week-pill prod">Finalização <span class="week-pill-tag">Prod</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S3</div>
+          <div class="week-pill prep">Doc. Final (T-15) <span class="week-pill-tag">Prep</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S4</div>
+          <div class="week-pill entr">⭐ Apresentações <span class="week-pill-tag">Entr</span></div>
+        </div>
+      </div>
+      <div class="month-dates">13 Mar — Doc. Final · 23–27 Mar — Apresentações</div>
+    </div>
+
+    <!-- ── ABRIL ── -->
+    <div class="month-block">
+      <div class="month-head">
+        <div class="month-name">Abril</div>
+        <span class="month-badge mb-c2">Entrega 2</span>
+      </div>
+      <div class="week-rows">
+        <div class="week-row">
+          <div class="week-label">S1</div>
+          <div class="week-pill plan">Kickoff da Entrega <span class="week-pill-tag">Plan</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S2</div>
+          <div class="week-pill plan">Envelopamento <span class="week-pill-tag">Plan</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S3</div>
+          <div class="week-pill prod">Desenvolvimento <span class="week-pill-tag">Prod</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S4</div>
+          <div class="week-pill prod">Desenvolvimento <span class="week-pill-tag">Prod</span></div>
+        </div>
+      </div>
+      <div class="month-dates">30 Mar — Kickoff · 06 Abr — Envelopamento</div>
+    </div>
+
+    <!-- ── MAIO ── -->
+    <div class="month-block">
+      <div class="month-head">
+        <div class="month-name">Maio</div>
+        <span class="month-badge mb-c2">Entrega 2</span>
+      </div>
+      <div class="week-rows">
+        <div class="week-row">
+          <div class="week-label">S1</div>
+          <div class="week-pill prod">Finalização <span class="week-pill-tag">Prod</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S2</div>
+          <div class="week-pill prep">Doc. Final (T-15) <span class="week-pill-tag">Prep</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S3</div>
+          <div class="week-pill entr">Apresentações <span class="week-pill-tag">Entr</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S4</div>
+          <div class="week-pill plan">Kickoff — Entrega 3 <span class="week-pill-tag">Plan</span></div>
+        </div>
+      </div>
+      <div class="month-dates">08 Mai — Doc. Final · 12–22 Mai — Apresentações · 25 Mai — Kickoff E3</div>
+    </div>
+
+    <!-- ── JUNHO ── -->
+    <div class="month-block">
+      <div class="month-head">
+        <div class="month-name">Junho</div>
+        <span class="month-badge mb-c3">Entrega 3</span>
+      </div>
+      <div class="week-rows">
+        <div class="week-row">
+          <div class="week-label">S1</div>
+          <div class="week-pill plan">Envelopamento <span class="week-pill-tag">Plan</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S2</div>
+          <div class="week-pill prod">Desenvolvimento <span class="week-pill-tag">Prod</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S3</div>
+          <div class="week-pill prod">Desenvolvimento <span class="week-pill-tag">Prod</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S4</div>
+          <div class="week-pill prod">Finalização <span class="week-pill-tag">Prod</span></div>
+        </div>
+      </div>
+      <div class="month-dates">01 Jun — Envelopamento · Jun — Desenvolvimento</div>
+    </div>
+
+    <!-- ── JULHO ── -->
+    <div class="month-block">
+      <div class="month-head">
+        <div class="month-name">Julho</div>
+        <span class="month-badge mb-c3">Entrega 3</span>
+      </div>
+      <div class="week-rows">
+        <div class="week-row">
+          <div class="week-label">S1</div>
+          <div class="week-pill prep">Doc. Final (T-15) <span class="week-pill-tag">Prep</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S2</div>
+          <div class="week-pill entr">Apresentações <span class="week-pill-tag">Entr</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S3</div>
+          <div class="week-pill entr">Apresentações <span class="week-pill-tag">Entr</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S4</div>
+          <div class="week-pill plan">Kickoff — Entrega 4 <span class="week-pill-tag">Plan</span></div>
+        </div>
+      </div>
+      <div class="month-dates">03 Jul — Doc. Final · 06–17 Jul — Apresentações · 20 Jul — Kickoff E4</div>
+    </div>
+
+    <!-- ── AGOSTO ── -->
+    <div class="month-block">
+      <div class="month-head">
+        <div class="month-name">Agosto</div>
+        <span class="month-badge mb-c4">Entrega 4</span>
+      </div>
+      <div class="week-rows">
+        <div class="week-row">
+          <div class="week-label">S1</div>
+          <div class="week-pill plan">Envelopamento <span class="week-pill-tag">Plan</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S2</div>
+          <div class="week-pill prod">Desenvolvimento <span class="week-pill-tag">Prod</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S3</div>
+          <div class="week-pill prod">Desenvolvimento <span class="week-pill-tag">Prod</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S4</div>
+          <div class="week-pill prep">Doc. Final (T-15) <span class="week-pill-tag">Prep</span></div>
+        </div>
+      </div>
+      <div class="month-dates">27 Jul — Envelopamento · 28 Ago — Doc. Final</div>
+    </div>
+
+    <!-- ── SETEMBRO ── -->
+    <div class="month-block">
+      <div class="month-head">
+        <div class="month-name">Setembro</div>
+        <span class="month-badge mb-c4">Entrega 4</span>
+      </div>
+      <div class="week-rows">
+        <div class="week-row">
+          <div class="week-label">S1</div>
+          <div class="week-pill entr">Apresentações <span class="week-pill-tag">Entr</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S2</div>
+          <div class="week-pill entr">Apresentações <span class="week-pill-tag">Entr</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S3</div>
+          <div class="week-pill plan">Kickoff — Entrega 5 <span class="week-pill-tag">Plan</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S4</div>
+          <div class="week-pill plan">Envelopamento <span class="week-pill-tag">Plan</span></div>
+        </div>
+      </div>
+      <div class="month-dates">31 Ago–11 Set — Apresentações · 14 Set — Kickoff E5</div>
+    </div>
+
+    <!-- ── OUTUBRO ── -->
+    <div class="month-block">
+      <div class="month-head">
+        <div class="month-name">Outubro</div>
+        <span class="month-badge mb-c5">Entrega 5</span>
+      </div>
+      <div class="week-rows">
+        <div class="week-row">
+          <div class="week-label">S1</div>
+          <div class="week-pill prod">Desenvolvimento <span class="week-pill-tag">Prod</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S2</div>
+          <div class="week-pill prod">Desenvolvimento <span class="week-pill-tag">Prod</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S3</div>
+          <div class="week-pill prod">Finalização <span class="week-pill-tag">Prod</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S4</div>
+          <div class="week-pill prep">Doc. Final (T-15) <span class="week-pill-tag">Prep</span></div>
+        </div>
+      </div>
+      <div class="month-dates">23 Out — Doc. Final</div>
+    </div>
+
+    <!-- ── NOVEMBRO ── -->
+    <div class="month-block">
+      <div class="month-head">
+        <div class="month-name">Novembro</div>
+        <div style="display:flex;gap:6px">
+          <span class="month-badge mb-c5">Entrega 5</span>
+          <span class="month-badge mb-c6">Entrega 6</span>
+        </div>
+      </div>
+      <div class="week-rows">
+        <div class="week-row">
+          <div class="week-label">S1</div>
+          <div class="week-pill entr">Apresentações <span class="week-pill-tag">Entr</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S2</div>
+          <div class="week-pill plan">Kickoff — Entrega 6 <span class="week-pill-tag">Plan</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S3</div>
+          <div class="week-pill plan">Envelopamento <span class="week-pill-tag">Plan</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S4</div>
+          <div class="week-pill prod">Desenvolvimento <span class="week-pill-tag">Prod</span></div>
+        </div>
+      </div>
+      <div class="month-dates">26 Out–06 Nov — Apresentações E5 · 09 Nov — Kickoff E6</div>
+    </div>
+
+    <!-- ── DEZEMBRO ── -->
+    <div class="month-block">
+      <div class="month-head">
+        <div class="month-name">Dezembro</div>
+        <span class="month-badge mb-c6">Entrega 6</span>
+      </div>
+      <div class="week-rows">
+        <div class="week-row">
+          <div class="week-label">S1</div>
+          <div class="week-pill prod">Desenvolvimento <span class="week-pill-tag">Prod</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S2</div>
+          <div class="week-pill prod">Finalização <span class="week-pill-tag">Prod</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S3</div>
+          <div class="week-pill prep">Doc. Final (T-15) <span class="week-pill-tag">Prep</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S4</div>
+          <div class="week-pill gap">Recesso de fim de ano</div>
+        </div>
+      </div>
+      <div class="month-dates">18 Dez — Doc. Final · Apresentações: Jan '27</div>
+    </div>
+
+    <!-- ── JANEIRO 2027 ── -->
+    <div class="month-block">
+      <div class="month-head">
+        <div class="month-name">Janeiro '27</div>
+        <span class="month-badge mb-c6">Entrega 6</span>
+      </div>
+      <div class="week-rows">
+        <div class="week-row">
+          <div class="week-label">S1</div>
+          <div class="week-pill entr">Apresentações <span class="week-pill-tag">Entr</span></div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S2</div>
+          <div class="week-pill gap">Encerramento E6</div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S3</div>
+          <div class="week-pill gap">Retrospectiva anual</div>
+        </div>
+        <div class="week-row">
+          <div class="week-label">S4</div>
+          <div class="week-pill gap">Planejamento 2027</div>
+        </div>
+      </div>
+      <div class="month-dates">05–09 Jan — Apresentações E6 · Encerramento do entrega anual</div>
+    </div>
+
+  </div><!-- /months-grid -->
+</div>
+
+
+</div><!-- /wrap -->
+
+<div class="o-band">
+  Regra T-15 · Documento final deve estar pronto 15 dias antes do início das apresentações
+</div>
+
+<div class="footer">
+  <span class="footer-brand">FENG</span>
+</div>
+
+</body>
+</html>
