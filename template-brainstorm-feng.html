@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Template de Ideias — Brainstorm FENG</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #F5F4FA;
+      color: #1E1E2D;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: #1E1E2D;
+      padding: 32px 48px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .header-left { flex: 1; }
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #E85D1E;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      margin-bottom: 14px;
+    }
+    .header-badge span.num {
+      background: rgba(255,255,255,0.25);
+      padding: 2px 6px;
+      border-radius: 2px;
+    }
+    .header h1 {
+      color: #fff;
+      font-size: 28px;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      max-width: 540px;
+    }
+    .header h1 em {
+      color: #E85D1E;
+      font-style: normal;
+    }
+    .header-meta {
+      text-align: right;
+      color: #aaa;
+      font-size: 12px;
+      line-height: 1.6;
+      flex-shrink: 0;
+    }
+    .header-meta strong { color: #fff; display: block; font-size: 13px; }
+
+    /* ── INTRO BLOCK ── */
+    .intro {
+      background: #fff;
+      border-left: 4px solid #6B3FA0;
+      padding: 18px 24px;
+      margin: 32px 48px 0;
+      font-size: 14px;
+      color: #444;
+      line-height: 1.65;
+    }
+
+    /* ── FORM WRAPPER ── */
+    .form-wrapper {
+      max-width: 860px;
+      margin: 32px auto 48px;
+      padding: 0 24px;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      background: #fff;
+      border-top: 3px solid #6B3FA0;
+      margin-bottom: 24px;
+      padding: 28px 32px;
+    }
+    .section.orange { border-top-color: #E85D1E; }
+    .section.dark   { border-top-color: #2D2A3E; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #e8e6f0;
+    }
+    .section-num {
+      font-size: 26px;
+      font-weight: 900;
+      color: #6B3FA0;
+      line-height: 1;
+    }
+    .section.orange .section-num { color: #E85D1E; }
+    .section.dark .section-num   { color: #2D2A3E; }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #1E1E2D;
+    }
+
+    /* ── GRID ── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .span-2 { grid-column: span 2; }
+
+    /* ── FIELD ── */
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #6B3FA0;
+    }
+    .section.orange .field label { color: #E85D1E; }
+    .section.dark   .field label { color: #2D2A3E; }
+
+    .field input, .field select, .field textarea {
+      border: 1.5px solid #ddd;
+      border-radius: 0;
+      padding: 10px 12px;
+      font-size: 13.5px;
+      font-family: inherit;
+      color: #1E1E2D;
+      background: #FAFAFA;
+      transition: border-color .15s;
+      outline: none;
+      resize: vertical;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: #6B3FA0;
+      background: #fff;
+    }
+    .section.orange .field input:focus,
+    .section.orange .field select:focus,
+    .section.orange .field textarea:focus { border-color: #E85D1E; }
+
+    .field textarea { min-height: 90px; }
+    .field .hint {
+      font-size: 11px;
+      color: #888;
+      font-style: italic;
+    }
+
+    /* ── TIPO DE MATERIAL ── */
+    .tipo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .tipo-card {
+      border: 2px solid #ddd;
+      padding: 14px 12px;
+      cursor: pointer;
+      transition: all .15s;
+      text-align: center;
+    }
+    .tipo-card:hover { border-color: #6B3FA0; background: #F5F4FA; }
+    .tipo-card input[type="radio"] { display: none; }
+    .tipo-card.selected {
+      border-color: #6B3FA0;
+      background: #EDE9F8;
+    }
+    .tipo-num {
+      font-size: 22px;
+      font-weight: 900;
+      color: #6B3FA0;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .tipo-card.selected .tipo-num { color: #6B3FA0; }
+    .tipo-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #1E1E2D;
+      line-height: 1.3;
+    }
+    .tipo-desc {
+      font-size: 10.5px;
+      color: #666;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    /* ── PERGUNTAS ── */
+    .perguntas { display: flex; flex-direction: column; gap: 12px; }
+    .pergunta-row {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+    .pergunta-num {
+      width: 28px; height: 28px;
+      background: #E85D1E;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── PRIORIDADE / COMPLEXIDADE ── */
+    .scale-group { display: flex; gap: 8px; }
+    .scale-btn {
+      flex: 1;
+      border: 1.5px solid #ddd;
+      background: #FAFAFA;
+      padding: 10px 4px;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+      transition: all .15s;
+      color: #888;
+    }
+    .scale-btn:hover { border-color: #6B3FA0; color: #6B3FA0; }
+    .scale-btn.selected-scale {
+      border-color: #6B3FA0;
+      background: #EDE9F8;
+      color: #6B3FA0;
+    }
+    .scale-btn.selected-orange {
+      border-color: #E85D1E;
+      background: #FDF0EA;
+      color: #E85D1E;
+    }
+
+    /* ── TIMES CHECKBOX ── */
+    .times-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .time-card {
+      border: 2px solid #ddd;
+      padding: 12px 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: all .15s;
+    }
+    .time-card input { display: none; }
+    .time-card:hover { border-color: #6B3FA0; }
+    .time-card.selected-time {
+      border-color: #6B3FA0;
+      background: #EDE9F8;
+    }
+    .time-label { font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: #1E1E2D; padding: 6px 0; }
+
+    /* ── KICKOFF CARDS ── */
+    .kickoff-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .kickoff-card {
+      border: 2px solid #ddd;
+      padding: 16px 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: all .15s;
+    }
+    .kickoff-card input { display: none; }
+    .kickoff-card:hover { border-color: #E85D1E; background: #FDF0EA; }
+    .kickoff-card.selected-kickoff {
+      border-color: #E85D1E;
+      background: #FDF0EA;
+    }
+    .kickoff-card.selected-kickoff .kickoff-date { color: #E85D1E; }
+    .kickoff-date {
+      font-size: 20px;
+      font-weight: 900;
+      color: #1E1E2D;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .kickoff-month {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #888;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 4px;
+      background: linear-gradient(to right, #6B3FA0 25%, #E85D1E 25%, #E85D1E 50%, #6B3FA0 50%, #6B3FA0 75%, #2D2A3E 75%);
+      margin: 0 48px;
+    }
+
+    /* ── FOOTER / SUBMIT ── */
+    .submit-bar {
+      background: #1E1E2D;
+      padding: 24px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .submit-bar p { color: #aaa; font-size: 12px; max-width: 400px; line-height: 1.5; }
+    .submit-bar p strong { color: #fff; }
+    .btn-submit {
+      background: #E85D1E;
+      color: #fff;
+      border: none;
+      padding: 14px 40px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .btn-submit:hover { background: #cc4e16; }
+
+    /* ── PRINT / SUCCESS ── */
+    .success-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(30,30,45,0.92);
+      align-items: center; justify-content: center;
+      z-index: 100;
+    }
+    .success-box {
+      background: #fff;
+      padding: 48px 56px;
+      text-align: center;
+      max-width: 480px;
+    }
+    .success-box .big-num { font-size: 64px; font-weight: 900; color: #E85D1E; }
+    .success-box h2 { font-size: 20px; font-weight: 900; text-transform: uppercase; margin: 8px 0 12px; }
+    .success-box p { font-size: 13px; color: #555; line-height: 1.6; }
+    .success-box .btn-ok {
+      margin-top: 24px;
+      display: inline-block;
+      background: #6B3FA0;
+      color: #fff;
+      border: none;
+      padding: 12px 32px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    @media (max-width: 640px) {
+      .header { padding: 24px; flex-direction: column; }
+      .header-meta { text-align: left; }
+      .form-wrapper { padding: 0 16px; }
+      .grid-2, .tipo-grid, .times-grid { grid-template-columns: 1fr 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .intro, .divider { margin-left: 16px; margin-right: 16px; }
+      .submit-bar { padding: 20px 16px; flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="header-badge"><span class="num">FENG</span> Inteligência + Planejamento</div>
+    <h1>Template de <em>Ideias</em><br>para Brainstorm</h1>
+  </div>
+  <div class="header-meta">
+    <strong>Ciclo Bimestral de Estudos</strong>
+    Preencha antes da reunião<br>
+    de Brainstorm do ciclo.
+  </div>
+</div>
+
+<div class="intro" style="margin: 0 48px; margin-top: 28px;">
+  Este template reúne as ideias de estudo a serem debatidas na reunião bimestral de Brainstorm da FENG. Preencha com atenção — quanto mais contexto você trouxer, mais produtiva será a discussão. <strong>Envie com até 3 dias de antecedência à reunião.</strong>
+</div>
+
+<div class="form-wrapper">
+
+  <!-- SEÇÃO 1: IDENTIFICAÇÃO -->
+  <div class="section" style="margin-top: 28px;">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Identificação</span>
+    </div>
+    <div class="grid-2" style="margin-bottom: 18px;">
+      <div class="field">
+        <label>Nome completo *</label>
+        <input type="text" id="nome" placeholder="Seu nome" />
+      </div>
+      <div class="field">
+        <label>E-mail *</label>
+        <input type="email" id="email" placeholder="seunome@fengbrasil.com.br" />
+      </div>
+    </div>
+    <div class="field">
+      <label>Time / Vertical *</label>
+      <div class="times-grid">
+        <label class="time-card" onclick="selectTime(this)">
+          <input type="radio" name="time" value="Inteligência" />
+          <div class="time-label">Inteligência</div>
+        </label>
+        <label class="time-card" onclick="selectTime(this)">
+          <input type="radio" name="time" value="Planejamento" />
+          <div class="time-label">Planejamento</div>
+        </label>
+        <label class="time-card" onclick="selectTime(this)">
+          <input type="radio" name="time" value="CS" />
+          <div class="time-label">CS</div>
+        </label>
+        <label class="time-card" onclick="selectTime(this)">
+          <input type="radio" name="time" value="BI / Produto" />
+          <div class="time-label">BI / Produto</div>
+        </label>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top: 18px;">
+      <label>Para qual Kickoff é essa ideia? *</label>
+      <div class="kickoff-grid">
+        <label class="kickoff-card" onclick="selectKickoff(this)">
+          <input type="radio" name="kickoff" value="Kickoff 25/05/2026" />
+          <div class="kickoff-date">25/05</div>
+          <div class="kickoff-month">Maio · 2026</div>
+        </label>
+        <label class="kickoff-card" onclick="selectKickoff(this)">
+          <input type="radio" name="kickoff" value="Kickoff 20/07/2026" />
+          <div class="kickoff-date">20/07</div>
+          <div class="kickoff-month">Julho · 2026</div>
+        </label>
+        <label class="kickoff-card" onclick="selectKickoff(this)">
+          <input type="radio" name="kickoff" value="Kickoff 14/09/2026" />
+          <div class="kickoff-date">14/09</div>
+          <div class="kickoff-month">Setembro · 2026</div>
+        </label>
+        <label class="kickoff-card" onclick="selectKickoff(this)">
+          <input type="radio" name="kickoff" value="Kickoff 09/11/2026" />
+          <div class="kickoff-date">09/11</div>
+          <div class="kickoff-month">Novembro · 2026</div>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 2: PROPOSTA -->
+  <div class="section orange">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Proposta de Estudo</span>
+    </div>
+
+    <div class="grid-2" style="margin-bottom: 18px;">
+      <div class="field span-2">
+        <label>Título / Nome do estudo proposto *</label>
+        <input type="text" id="titulo" placeholder="Ex: Benchmark de programas de loyalty em clubes europeus" />
+        <span class="hint">Seja direto e descritivo — o título deve comunicar o tema imediatamente.</span>
+      </div>
+    </div>
+
+    <div class="field" style="margin-bottom: 18px;">
+      <label>Tipo de material *</label>
+      <div class="tipo-grid">
+        <label class="tipo-card" onclick="selectTipo(this)">
+          <input type="radio" name="tipo" value="Estudo Analítico" />
+          <div class="tipo-num">01</div>
+          <div class="tipo-label">Estudo Analítico</div>
+          <div class="tipo-desc">Análises aprofundadas dos programas e dados dos clubes</div>
+        </label>
+        <label class="tipo-card" onclick="selectTipo(this)">
+          <input type="radio" name="tipo" value="Benchmarking" />
+          <div class="tipo-num">02</div>
+          <div class="tipo-label">Benchmarking</div>
+          <div class="tipo-desc">Referências de mercado e boas práticas internacionais</div>
+        </label>
+        <label class="tipo-card" onclick="selectTipo(this)">
+          <input type="radio" name="tipo" value="Documento Metodológico" />
+          <div class="tipo-num">03</div>
+          <div class="tipo-label">Doc. Metodológico</div>
+          <div class="tipo-desc">Frameworks e metodologias de evolução estratégica</div>
+        </label>
+        <label class="tipo-card" onclick="selectTipo(this)">
+          <input type="radio" name="tipo" value="Proposta Estratégica" />
+          <div class="tipo-num">04</div>
+          <div class="tipo-label">Proposta Estratégica</div>
+          <div class="tipo-desc">Recomendações práticas e aplicáveis por clube</div>
+        </label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Tema central / Categoria temática</label>
+      <select id="tema">
+        <option value="">Selecione...</option>
+        <option>Loyalty & Retenção</option>
+        <option>CRM & Automação</option>
+        <option>Performance Digital</option>
+        <option>Benchmark Internacional</option>
+        <option>Experiência do Sócio</option>
+        <option>Aquisição & Conversão</option>
+        <option>Dados & BI</option>
+        <option>Outro</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 3: CONTEXTO -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">Contexto e Justificativa</span>
+    </div>
+    <div class="field" style="margin-bottom: 18px;">
+      <label>Por que esse estudo agora? *</label>
+      <textarea id="justificativa" placeholder="Qual dor, oportunidade ou demanda dos clubes motivou essa ideia? O que está acontecendo no mercado ou na base que torna esse tema relevante neste momento?"></textarea>
+    </div>
+    <div class="field">
+      <label>Qual problema ou oportunidade endereça para os clubes? *</label>
+      <textarea id="problema" placeholder="Descreva o impacto prático que o estudo pode ter. O que o clube vai conseguir fazer de diferente depois de receber esse material?"></textarea>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 4: PERGUNTAS -->
+  <div class="section orange">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <span class="section-title">Perguntas Centrais do Estudo</span>
+    </div>
+    <p style="font-size: 12.5px; color: #666; margin-bottom: 18px;">Quais são as 3 perguntas principais que esse estudo deve responder?</p>
+    <div class="perguntas">
+      <div class="pergunta-row">
+        <div class="pergunta-num">1</div>
+        <div class="field" style="flex: 1;">
+          <input type="text" id="p1" placeholder="Ex: Qual é a taxa de expiração de pontos nos clubes com base ativa superior a 50 mil sócios?" />
+        </div>
+      </div>
+      <div class="pergunta-row">
+        <div class="pergunta-num">2</div>
+        <div class="field" style="flex: 1;">
+          <input type="text" id="p2" placeholder="Ex: Como os maiores clubes europeus estruturam seus catálogos de recompensas?" />
+        </div>
+      </div>
+      <div class="pergunta-row">
+        <div class="pergunta-num">3</div>
+        <div class="field" style="flex: 1;">
+          <input type="text" id="p3" placeholder="Ex: Qual é o comportamento de resgate entre sócios em diferentes faixas de engajamento?" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 5: DADOS E ESCOPO -->
+  <div class="section dark">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <span class="section-title">Dados, Fontes e Escopo</span>
+    </div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Quais dados / fontes serão necessários?</label>
+        <textarea id="dados" placeholder="Ex: Dados de pontuação e resgate da base, relatórios de campanhas, benchmarks externos (Deloitte, McKinsey...)"></textarea>
+      </div>
+      <div class="field">
+        <label>Clubes-alvo sugeridos</label>
+        <textarea id="clubes" placeholder="Ex: Todos os clubes, ou indicar quais especificamente se o estudo for segmentado."></textarea>
+        <span class="hint">Deixe em branco se for universal.</span>
+      </div>
+      <div class="field">
+        <label>Quais times precisariam estar envolvidos?</label>
+        <textarea id="times-envolvidos" placeholder="Ex: Inteligência lidera, com apoio de BI para extração de dados e CS para validação com clubes."></textarea>
+      </div>
+      <div class="field">
+        <label>Há alguma referência ou benchmark externo já mapeado?</label>
+        <textarea id="referencias" placeholder="Ex: Relatório da Kantar sobre loyalty em esportes, case do Arsenal FC..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 6: PRIORIDADE -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <span class="section-title">Prioridade e Complexidade</span>
+    </div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Nível de prioridade percebido</label>
+        <div class="scale-group" id="prioridade">
+          <div class="scale-btn" onclick="selectScale('prioridade', this, 'scale')">Baixa</div>
+          <div class="scale-btn" onclick="selectScale('prioridade', this, 'scale')">Média</div>
+          <div class="scale-btn" onclick="selectScale('prioridade', this, 'scale')">Alta</div>
+          <div class="scale-btn" onclick="selectScale('prioridade', this, 'scale')">Urgente</div>
+        </div>
+        <span class="hint">Urgente = já existe demanda explícita de clube ou diretoria.</span>
+      </div>
+      <div class="field">
+        <label>Complexidade estimada de produção</label>
+        <div class="scale-group" id="complexidade">
+          <div class="scale-btn" onclick="selectScale('complexidade', this, 'orange')">Baixa</div>
+          <div class="scale-btn" onclick="selectScale('complexidade', this, 'orange')">Média</div>
+          <div class="scale-btn" onclick="selectScale('complexidade', this, 'orange')">Alta</div>
+          <div class="scale-btn" onclick="selectScale('complexidade', this, 'orange')">Muito Alta</div>
+        </div>
+        <span class="hint">Considere volume de dados, necessidade de BI e profundidade analítica.</span>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top: 20px;">
+      <label>Impacto esperado para os clubes</label>
+      <textarea id="impacto" placeholder="O que o clube consegue fazer de concreto a partir desse estudo? Qual é o valor entregue — decisão, ação, percepção de valor, retenção...?"></textarea>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 7: OBSERVAÇÕES -->
+  <div class="section orange">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <span class="section-title">Observações Adicionais</span>
+    </div>
+    <div class="field">
+      <label>Alguma informação complementar?</label>
+      <textarea id="obs" placeholder="Riscos, dependências, sugestões de formato de entrega (PPT, one-pager, vídeo...), ou qualquer outro ponto relevante." style="min-height: 80px;"></textarea>
+    </div>
+  </div>
+
+</div><!-- /form-wrapper -->
+
+<div class="divider"></div>
+
+<!-- FOOTER SUBMIT -->
+<div class="submit-bar">
+  <p><strong>Lembre-se:</strong> envie esse template com pelo menos 3 dias de antecedência à reunião de Brainstorm. Quanto mais contexto, mais produtiva a discussão.</p>
+  <button class="btn-submit" onclick="submitForm()">Enviar ideia →</button>
+</div>
+
+<!-- SUCCESS -->
+<div class="success-overlay" id="success">
+  <div class="success-box">
+    <div class="big-num">✓</div>
+    <h2>Ideia registrada!</h2>
+    <p>Sua proposta foi enviada com sucesso. Ela será revisada antes da reunião de Brainstorm e debatida com o time.<br><br>Obrigado por contribuir com o processo!</p>
+    <button class="btn-ok" onclick="document.getElementById('success').style.display='none'">Fechar</button>
+  </div>
+</div>
+
+<script>
+  // Seleção de cards
+  function selectTipo(el) {
+    document.querySelectorAll('.tipo-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    el.querySelector('input').checked = true;
+  }
+  function selectTime(el) {
+    document.querySelectorAll('.time-card').forEach(c => c.classList.remove('selected-time'));
+    el.classList.add('selected-time');
+    el.querySelector('input').checked = true;
+  }
+  function selectKickoff(el) {
+    document.querySelectorAll('.kickoff-card').forEach(c => c.classList.remove('selected-kickoff'));
+    el.classList.add('selected-kickoff');
+    el.querySelector('input').checked = true;
+  }
+
+  // Escalas
+  function selectScale(groupId, el, type) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.scale-btn').forEach(b => {
+      b.classList.remove('selected-scale', 'selected-orange');
+    });
+    el.classList.add(type === 'orange' ? 'selected-orange' : 'selected-scale');
+  }
+
+  // Validação simples
+  function submitForm() {
+    const required = [
+      { id: 'nome', label: 'Nome completo' },
+      { id: 'email', label: 'E-mail' },
+      { id: 'titulo', label: 'Título do estudo' },
+      { id: 'justificativa', label: 'Justificativa' },
+      { id: 'problema', label: 'Problema / Oportunidade' },
+    ];
+    const timeSelected = document.querySelector('input[name="time"]:checked');
+    const tipoSelected = document.querySelector('input[name="tipo"]:checked');
+    const kickoffSelected = document.querySelector('input[name="kickoff"]:checked');
+
+    for (const f of required) {
+      const el = document.getElementById(f.id);
+      if (!el.value.trim()) {
+        el.style.borderColor = '#E85D1E';
+        el.focus();
+        alert('Preencha o campo obrigatório: ' + f.label);
+        return;
+      } else {
+        el.style.borderColor = '';
+      }
+    }
+    if (!timeSelected)   { alert('Selecione seu Time / Vertical.'); return; }
+    if (!kickoffSelected) { alert('Selecione o Kickoff para o qual a ideia se destina.'); return; }
+    if (!tipoSelected)   { alert('Selecione o Tipo de Material.'); return; }
+
+    const data = {
+      Nome: document.getElementById('nome').value,
+      Email: document.getElementById('email').value,
+      Time: timeSelected.value,
+      Kickoff: kickoffSelected.value,
+      Titulo_do_Estudo: document.getElementById('titulo').value,
+      Tipo_de_Material: tipoSelected.value,
+      Categoria_Tematica: document.getElementById('tema').value,
+      Justificativa: document.getElementById('justificativa').value,
+      Problema_ou_Oportunidade: document.getElementById('problema').value,
+      Pergunta_1: document.getElementById('p1').value,
+      Pergunta_2: document.getElementById('p2').value,
+      Pergunta_3: document.getElementById('p3').value,
+      Dados_e_Fontes: document.getElementById('dados').value,
+      Clubes_Alvo: document.getElementById('clubes').value,
+      Referencias_Externas: document.getElementById('referencias').value,
+      Impacto_Esperado: document.getElementById('impacto').value,
+      Observacoes: document.getElementById('obs').value,
+    };
+
+    const btn = document.querySelector('.btn-submit');
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+
+    fetch('https://formspree.io/f/maqkjqzz', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        document.getElementById('success').style.display = 'flex';
+        btn.textContent = 'Enviar ideia →';
+        btn.disabled = false;
+      } else {
+        alert('Erro ao enviar. Tente novamente ou entre em contato com o responsável.');
+        btn.textContent = 'Enviar ideia →';
+        btn.disabled = false;
+      }
+    })
+    .catch(() => {
+      alert('Erro de conexão. Verifique sua internet e tente novamente.');
+      btn.textContent = 'Enviar ideia →';
+      btn.disabled = false;
+    });
+  }
+</script>
+</body>
+</html>
