@@ -414,27 +414,6 @@
         <input type="email" id="email" placeholder="seunome@fengbrasil.com.br" />
       </div>
     </div>
-    <div class="field">
-      <label>Time / Vertical *</label>
-      <div class="times-grid">
-        <label class="time-card" onclick="selectTime(this)">
-          <input type="radio" name="time" value="Inteligência" />
-          <div class="time-label">Inteligência</div>
-        </label>
-        <label class="time-card" onclick="selectTime(this)">
-          <input type="radio" name="time" value="Planejamento" />
-          <div class="time-label">Planejamento</div>
-        </label>
-        <label class="time-card" onclick="selectTime(this)">
-          <input type="radio" name="time" value="CS" />
-          <div class="time-label">CS</div>
-        </label>
-        <label class="time-card" onclick="selectTime(this)">
-          <input type="radio" name="time" value="BI / Produto" />
-          <div class="time-label">BI / Produto</div>
-        </label>
-      </div>
-    </div>
 
     <div class="field" style="margin-top: 18px;">
       <label>Para qual Kickoff é essa ideia? *</label>
@@ -699,7 +678,6 @@
       { id: 'justificativa', label: 'Justificativa' },
       { id: 'problema', label: 'Problema / Oportunidade' },
     ];
-    const timeSelected = document.querySelector('input[name="time"]:checked');
     const tipoSelected = document.querySelector('input[name="tipo"]:checked');
     const kickoffSelected = document.querySelector('input[name="kickoff"]:checked');
 
@@ -714,14 +692,12 @@
         el.style.borderColor = '';
       }
     }
-    if (!timeSelected)   { alert('Selecione seu Time / Vertical.'); return; }
     if (!kickoffSelected) { alert('Selecione o Kickoff para o qual a ideia se destina.'); return; }
     if (!tipoSelected)   { alert('Selecione o Tipo de Material.'); return; }
 
     const data = {
       Nome: document.getElementById('nome').value,
       Email: document.getElementById('email').value,
-      Time: timeSelected.value,
       Kickoff: kickoffSelected.value,
       Titulo_do_Estudo: document.getElementById('titulo').value,
       Tipo_de_Material: tipoSelected.value,
