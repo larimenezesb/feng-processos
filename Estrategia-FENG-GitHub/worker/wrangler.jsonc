@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "feng-regras",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-09-02",
+  "workers_dev": true,
+  "vars": {
+    "ALLOWED_ORIGIN": "https://larimenezesb.github.io"
+  },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "feng-regras",
+    "database_id": "624c0e22-ae8a-4dde-b766-c58d61a3bf3e",
+    "migrations_dir": "migrations"
+  }]
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "regras-fluminense",
+    "club": "Fluminense",
+    "arrears_grace": 5,
+    "termination": "95 dias",
+    "renewal_grace": 5,
+    "finalization": 95,
+    "advance_renewal": 30,
+    "effective_from": "",
+    "reference": "Carências e finalização: tabela fornecida, atualizada em 04/04/2025. Desligamento: mesma tabela. Renovação antecipada: informação fornecida nesta revisão.",
+    "notes": ""
+  },
+  {
+    "id": "regras-flamengo",
+    "club": "Flamengo",
+    "arrears_grace": 30,
+    "termination": "Não existe desligamento. O Sócio fica Inativo Inadimplente com 3 parcelas em aberto até quitar",
+    "renewal_grace": 7,
+    "finalization": 91,
+    "advance_renewal": 45,
+    "effective_from": "",
+    "reference": "Carências e finalização: tabela fornecida, atualizada em 04/04/2025. Desligamento: correção informada nesta revisão. Renovação antecipada: informação fornecida nesta revisão.",
+    "notes": ""
+  },
+  {
+    "id": "regras-botafogo",
+    "club": "Botafogo",
+    "arrears_grace": 7,
+    "termination": "90 dias",
+    "renewal_grace": 90,
+    "finalization": 180,
+    "advance_renewal": null,
+    "effective_from": "",
+    "reference": "Carências e finalização: tabela fornecida, atualizada em 04/04/2025. Desligamento: mesma tabela.",
+    "notes": ""
+  },
+  {
+    "id": "regras-sao-paulo",
+    "club": "São Paulo",
+    "arrears_grace": 8,
+    "termination": "90 dias",
+    "renewal_grace": 1,
+    "finalization": 60,
+    "advance_renewal": 60,
+    "effective_from": "",
+    "reference": "Carências e finalização: tabela fornecida, atualizada em 04/04/2025. Desligamento: mesma tabela. Renovação antecipada: informação fornecida nesta revisão.",
+    "notes": ""
+  },
+  {
+    "id": "regras-vasco",
+    "club": "Vasco",
+    "arrears_grace": 10,
+    "termination": "90 dias",
+    "renewal_grace": 10,
+    "finalization": 60,
+    "advance_renewal": 75,
+    "effective_from": "",
+    "reference": "Carências e finalização: tabela fornecida, atualizada em 04/04/2025. Desligamento: mesma tabela. Renovação antecipada: informação fornecida nesta revisão.",
+    "notes": ""
+  }
+]
