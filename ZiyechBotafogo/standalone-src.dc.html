@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<meta name="ext-resource-dependency" content="./assets/ziyech-hero.png" data-resource-id="ziyechHero" />
+<meta name="ext-resource-dependency" content="https://cdn.camisa7.botafogo.com.br/prod/images/2023/camisa7logo-23.svg" data-resource-id="camisa7Logo" />
+</head>
+<body>
+<img src="./assets/ziyech-hero.png" alt="" style="display:none" />
+<img src="https://cdn.camisa7.botafogo.com.br/prod/images/2023/camisa7logo-23.svg" alt="" style="display:none" />
+<template id="__bundler_thumbnail" data-bg-color="#0A0A0A">
+  <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="400" fill="#0A0A0A"/><polygon points="200,110 222,178 294,178 236,222 258,290 200,246 142,290 164,222 106,178 178,178" fill="#F2F1ED"/></svg>
+</template>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,800;1,700&family=Noto+Kufi+Arabic:wght@400;700;900&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  *, *::before, *::after { box-sizing:border-box; }
+  body { margin:0; background:#0A0A0A; -webkit-font-smoothing:antialiased; }
+  a { color:#F2F1ED; text-decoration:none; }
+  a:hover { color:#FFFFFF; }
+  input::placeholder { color:#6B6B68; }
+  input:focus { outline:none; }
+  @keyframes starGlow { 0%,100% { opacity:.10 } 50% { opacity:.18 } }
+</style>
+</helmet>
+<div dir="{{ dir }}" style="min-height:100vh;background:#0A0A0A;color:#F2F1ED;font-family:Archivo,'Noto Kufi Arabic',system-ui,sans-serif;display:flex;justify-content:center">
+  <div style="width:100%;max-width:1200px;position:relative;overflow:hidden;background:#0A0A0A">
+
+    <div style="display:flex;flex-wrap:wrap;align-items:stretch">
+
+    <section style="position:relative;flex:1 1 440px;min-width:0;display:flex;flex-direction:column">
+      <div style="position:relative;width:100%;flex:1 1 auto;aspect-ratio:4/5;max-height:82vh;background:#111">
+        <image-slot id="ziyech-hero" shape="rect" fit="cover" src="{{ heroSrc }}" placeholder="Foto do Ziyech com a camisa do Botafogo"></image-slot>
+        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom, rgba(10,10,10,.72) 0%, rgba(10,10,10,0) 32%, rgba(10,10,10,.15) 55%, rgba(10,10,10,.92) 92%, #0A0A0A 100%)"></div>
+        <div style="position:absolute;inset-inline-start:20px;inset-inline-end:20px;top:20px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <div style="display:flex;align-items:center;gap:10px;pointer-events:none">
+            <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true"><polygon points="50,2 61,36 97,36 68,58 79,93 50,71 21,93 32,58 3,36 39,36" fill="#F2F1ED"></polygon></svg>
+            <span style="font-size:10px;letter-spacing:.26em;text-transform:uppercase;font-weight:600;color:#F2F1ED">Botafogo de Futebol e Regatas</span>
+          </div>
+          <img src="{{ logoSrc }}" alt="Camisa 7" style="height:38px;width:auto;flex:none;pointer-events:none" />
+        </div>
+      </div>
+      <div style="padding:0 clamp(24px,4vw,44px) clamp(36px,5vw,52px);margin-top:-64px;position:relative">
+        <h1 style="margin:0;font-size:clamp(38px,11vw,54px);line-height:.96;font-weight:800;letter-spacing:-.02em;text-transform:uppercase;text-wrap:balance">Ziyech<br /><span style="font-weight:400;font-style:italic;text-transform:none;letter-spacing:-.01em">veste a Estrela Solitária</span></h1>
+        <p style="margin:22px 0 0;font-size:17px;line-height:1.55;color:#C9C8C3;max-width:34ch;text-wrap:pretty">Nosso craque agora joga no clube mais tradicional do Brasil. E o Marrocos passa a ter um lugar no Alvinegro.</p>
+      </div>
+    </section>
+
+    <section id="cadastro" style="flex:1 1 440px;min-width:0;padding:clamp(40px,5vw,64px) clamp(24px,4vw,48px) clamp(48px,5vw,64px);background:#F2F1ED;color:#0A0A0A;border-top:3px solid #C8A45C;display:flex;flex-direction:column;justify-content:center">
+      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+            <svg viewBox="0 0 100 100" width="18" height="18" aria-hidden="true"><polygon points="50,2 61,36 97,36 68,58 79,93 50,71 21,93 32,58 3,36 39,36" fill="#9C7C33"></polygon></svg>
+            <span style="font-size:11px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:#9C7C33">Cadastro</span>
+          </div>
+          <h2 style="margin:0 0 10px;font-size:clamp(26px,7.5vw,34px);line-height:1.08;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;max-width:14ch">Acompanhe o Ziyech no Botafogo</h2>
+          <p style="margin:0 0 28px;font-size:15px;line-height:1.6;color:#4A4A46;max-width:36ch">Deixe seus dados e entre para a base de torcedores do Glorioso. A Estrela Solitária também é sua.</p>
+          <form onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:18px">
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#0A0A0A">Nome</span>
+              <input type="text" name="nome" autoComplete="name" placeholder="Nome completo" value="{{ nome }}" onChange="{{ onNome }}" style="width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1.5px solid #0A0A0A;padding:10px 2px;font-family:inherit;font-size:17px;color:#0A0A0A" />
+              <sc-if value="{{ errNome }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:#8A1A1A">{{ errNome }}</span></sc-if>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#0A0A0A">E-mail</span>
+              <input type="email" name="email" autoComplete="email" placeholder="voce@email.com" dir="ltr" value="{{ email }}" onChange="{{ onEmail }}" style="width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1.5px solid #0A0A0A;padding:10px 2px;font-family:inherit;font-size:17px;color:#0A0A0A;text-align:start" />
+              <sc-if value="{{ errEmail }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:#8A1A1A">{{ errEmail }}</span></sc-if>
+            </label>
+            <button type="submit" style="margin-top:10px;width:100%;min-height:56px;background:#0A0A0A;color:#F2F1ED;border:0;border-radius:0;font-family:inherit;font-size:15px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px" style-hover="background:#1E1E1C">
+              <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true"><polygon points="50,2 61,36 97,36 68,58 79,93 50,71 21,93 32,58 3,36 39,36" fill="#C8A45C"></polygon></svg>
+              Quero acompanhar
+            </button>
+            <p style="margin:4px 0 0;font-size:12px;line-height:1.5;color:#6B6B68">Ao enviar, você autoriza o Botafogo a entrar em contato sobre notícias, conteúdos e ações do clube.</p>
+          </form>
+        </div>
+      </sc-if>
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="min-height:340px;display:flex;flex-direction:column;justify-content:center;gap:16px">
+          <svg viewBox="0 0 100 100" width="40" height="40" aria-hidden="true"><polygon points="50,2 61,36 97,36 68,58 79,93 50,71 21,93 32,58 3,36 39,36" fill="#9C7C33"></polygon></svg>
+          <h2 style="margin:0;font-size:clamp(26px,7.5vw,34px);line-height:1.08;font-weight:800;text-transform:uppercase;letter-spacing:-.02em">Bem-vindo ao Alvinegro</h2>
+          <p style="margin:0;font-size:16px;line-height:1.6;color:#4A4A46;max-width:34ch">Seu cadastro foi recebido. A partir de agora você acompanha o Ziyech e o Botafogo de perto.</p>
+        </div>
+      </sc-if>
+    </section>
+
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;align-items:stretch">
+
+    <section style="flex:1 1 380px;min-width:0;padding:clamp(40px,4vw,56px) clamp(24px,4vw,44px) clamp(40px,4vw,52px);border-top:1px solid #1E1E1C;position:relative;overflow:hidden;display:flex;flex-direction:column">
+      <div style="position:absolute;inset-inline-end:-70px;top:20px;pointer-events:none;animation:starGlow 6s ease-in-out infinite">
+        <svg viewBox="0 0 100 100" width="260" height="260" aria-hidden="true"><polygon points="50,2 61,36 97,36 68,58 79,93 50,71 21,93 32,58 3,36 39,36" fill="none" stroke="#F2F1ED" stroke-width="1.2"></polygon></svg>
+      </div>
+      <h2 style="margin:0 0 20px;position:relative;font-size:clamp(24px,7vw,32px);line-height:1.12;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;max-width:16ch">O clube que levou o Brasil ao mundo</h2>
+      <div style="display:flex;flex-direction:column;gap:16px;position:relative">
+        <p style="margin:0;font-size:16px;line-height:1.65;color:#C9C8C3;text-wrap:pretty">Garrincha, Nílton Santos, Didi, Jairzinho. Do Botafogo saíram os jogadores que ensinaram o futebol brasileiro ao planeta. É essa camisa que Ziyech veste agora.</p>
+        <p style="margin:0;font-size:16px;line-height:1.65;color:#C9C8C3;text-wrap:pretty">A Estrela Solitária no peito é uma só, e é de quem torce. Do Rio de Janeiro a Casablanca, ela passa a brilhar nos dois lados do Atlântico.</p>
+      </div>
+      <div style="margin-top:auto;padding-top:32px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#1E1E1C;border-block:1px solid #1E1E1C">
+        <div style="background:#0A0A0A;padding:18px 8px;text-align:center;display:flex;flex-direction:column;justify-content:center"><div style="font-size:26px;font-weight:800;letter-spacing:-.02em;color:#C8A45C">1904</div><div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8A8A86;margin-top:6px">Fundação</div></div>
+        <div style="background:#0A0A0A;padding:18px 8px;text-align:center;display:flex;flex-direction:column;justify-content:center"><div style="font-size:26px;font-weight:800;letter-spacing:-.02em;color:#C8A45C">3</div><div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8A8A86;margin-top:6px">Brasileiros</div></div>
+        <div style="background:#0A0A0A;padding:18px 8px;text-align:center;display:flex;flex-direction:column;justify-content:center"><div style="font-size:26px;font-weight:800;letter-spacing:-.02em;color:#C8A45C">1</div><div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8A8A86;margin-top:6px">Libertadores</div></div>
+      </div>
+    </section>
+
+    <section style="flex:1 1 380px;min-width:0;padding:clamp(40px,4vw,56px) clamp(24px,4vw,44px) clamp(40px,4vw,52px);border-top:1px solid #1E1E1C;border-inline-start:1px solid #1E1E1C;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+        <img src="{{ logoSrc }}" alt="Camisa 7" style="height:56px;width:auto;flex:none" />
+        <span style="font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#B99B58;font-weight:600;line-height:1.6">Programa de<br />sócio-torcedor</span>
+      </div>
+      <h2 style="margin:0 0 18px;font-size:clamp(24px,7vw,32px);line-height:1.12;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;max-width:15ch">Nossa gente é Botafogo de verdade</h2>
+      <p style="margin:0 0 26px;font-size:16px;line-height:1.65;color:#C9C8C3;text-wrap:pretty;max-width:38ch">A camisa 7 do Botafogo foi de Garrincha, de Túlio, de Maurício. Hoje ela é do torcedor: quem está com o Glorioso de onde estiver é parte do time.</p>
+      <div style="display:flex;flex-direction:column;gap:1px;background:#1E1E1C;border-block:1px solid #1E1E1C">
+        <div style="background:#0A0A0A;padding:16px 0;display:flex;align-items:center;gap:14px">
+          <svg viewBox="0 0 100 100" width="14" height="14" style="flex:none" aria-hidden="true"><polygon points="50,2 61,36 97,36 68,58 79,93 50,71 21,93 32,58 3,36 39,36" fill="#C8A45C"></polygon></svg>
+          <span style="font-size:15px;line-height:1.4;color:#E4E3DE">Notícias do Ziyech e do elenco em primeira mão</span>
+        </div>
+        <div style="background:#0A0A0A;padding:16px 0;display:flex;align-items:center;gap:14px">
+          <svg viewBox="0 0 100 100" width="14" height="14" style="flex:none" aria-hidden="true"><polygon points="50,2 61,36 97,36 68,58 79,93 50,71 21,93 32,58 3,36 39,36" fill="#C8A45C"></polygon></svg>
+          <span style="font-size:15px;line-height:1.4;color:#E4E3DE">Conteúdos e bastidores do Glorioso</span>
+        </div>
+        <div style="background:#0A0A0A;padding:16px 0;display:flex;align-items:center;gap:14px">
+          <svg viewBox="0 0 100 100" width="14" height="14" style="flex:none" aria-hidden="true"><polygon points="50,2 61,36 97,36 68,58 79,93 50,71 21,93 32,58 3,36 39,36" fill="#C8A45C"></polygon></svg>
+          <span style="font-size:15px;line-height:1.4;color:#E4E3DE">Seja Camisa 7, de qualquer lugar do mundo</span>
+        </div>
+      </div>
+      <p style="margin:26px 0 8px;font-size:19px;line-height:1.35;font-style:italic;color:#C8A45C;max-width:24ch">“Te apoiarei até minha vida acabar.”</p>
+      <a href="#cadastro" style="margin-top:auto;width:100%;min-height:56px;box-sizing:border-box;background:#F2F1ED;color:#0A0A0A;font-size:15px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:12px" style-hover="background:#FFFFFF;color:#0A0A0A">
+        <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true"><polygon points="50,2 61,36 97,36 68,58 79,93 50,71 21,93 32,58 3,36 39,36" fill="#9C7C33"></polygon></svg>
+        Conheça o Camisa 7
+      </a>
+    </section>
+
+    </div>
+
+    <footer style="padding:28px clamp(24px,4vw,44px) 40px;border-top:1px solid #1E1E1C;display:flex;align-items:center;justify-content:space-between;gap:16px">
+      <span style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#6B6B68">Botafogo · 1904</span>
+      <svg viewBox="0 0 100 100" width="16" height="16" aria-hidden="true"><polygon points="50,2 61,36 97,36 68,58 79,93 50,71 21,93 32,58 3,36 39,36" fill="#B99B58"></polygon></svg>
+    </footer>
+
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;dir&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ltr&quot;,&quot;rtl&quot;],&quot;default&quot;:&quot;ltr&quot;,&quot;tsType&quot;:&quot;'ltr' | 'rtl'&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
+class Component extends DCLogic {
+  state = { nome: "", email: "", errors: {}, sent: false };
+
+  set(k) { return (e) => this.setState({ [k]: e.target.value }); }
+
+  validate() {
+    const { nome, email } = this.state;
+    const errors = {};
+    if (nome.trim().length < 2) errors.nome = "Informe seu nome.";
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email.trim())) errors.email = "Informe um e-mail válido.";
+    return errors;
+  }
+
+  renderVals() {
+    const dir = this.props.dir ?? "ltr";
+    const R = (typeof window !== "undefined" && window.__resources) || {};
+    return {
+      dir,
+      heroSrc: R.ziyechHero || "./assets/ziyech-hero.png",
+      logoSrc: R.camisa7Logo || "https://cdn.camisa7.botafogo.com.br/prod/images/2023/camisa7logo-23.svg",
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      nome: this.state.nome,
+      email: this.state.email,
+      errNome: this.state.errors.nome || false,
+      errEmail: this.state.errors.email || false,
+      onNome: this.set("nome"),
+      onEmail: this.set("email"),
+      onSubmit: (e) => {
+        e.preventDefault();
+        const errors = this.validate();
+        this.setState({ errors, sent: Object.keys(errors).length === 0 });
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>
